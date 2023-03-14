@@ -58,8 +58,8 @@ export const NavBar = ({ token, setToken }) => {
                                     Posts
                                 </Link>
                                 <span className="padding">/</span>
-                                <Link to="posts/myposts" className="navbar-item">
-                                    My Posts
+                                <Link to="/portfolio" className="navbar-item">
+                                    My Portfolio
                                 </Link>
                                 <span className="padding">/</span>
                                 <Link to="/categories" className="navbar-item">
