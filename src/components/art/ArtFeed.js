@@ -17,13 +17,15 @@ export const ArtFeed = ({ token, authorChoice, selectedCategory }) => {
     }, [])
 
     return (
-        <>
-            <article className="art__container">
-                <div>
-                    {art.map((art_piece) => (
-                    <Art key={art_piece.id} art_piece={art_piece} token={token} />
-                    ))}
+        <><div className="art__container">
+                {/* <div className="tile is-ancestor"> */}
+                    
+                        {art.map((art_piece) => (
+                            <Art key={art_piece.id} art_piece={art_piece} token={token} />
+                        ))}
+                    
+                {/* </div> */}
                 </div>
-            </article></>
+        </>
     )
 }
