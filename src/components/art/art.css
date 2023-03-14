@@ -1,0 +1,39 @@
+.subtitle.is-custom {
+    font-size: 12px;
+  }
+  
+  .subtitle.is-custom-margin {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  .title.is-margin {
+    padding-bottom: 10px;
+  }
+  
+  .hover:hover {
+    opacity: 0.7;
+  }
+  
+  .hover {
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  
+  .postImg{
+    padding: 0px;
+  }
+
+  .art__container {
+    padding: 5rem;
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+  }
+
+  .art__piececard {
+    background-color: white;
+    border: 1px dotted black;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem
+  }
