@@ -25,3 +25,14 @@ export const getCurrentUserPieces = () => {
       }
     }).then((res) => res.json())
   }
+
+  export const addNewPiece = (postbody) => { 
+    return fetch(`http://localhost:8000/art`, {
+        method: "POST",
+        headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        },
+        body: JSON.stringify(postbody),
+    })
+  }
