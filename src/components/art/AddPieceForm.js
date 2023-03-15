@@ -381,6 +381,20 @@ export const AddPieceForm = ({ token }) => {
                             setNewPiece(copy)
                         }} />
                 </div>
+                <div className="form-group">
+                    <label className="label">Price</label>
+
+                    <input
+                        type="number"
+                        name="price"
+                        className="image-form-control"
+                        placeholder="$000.00"
+                        onChange={(event) => {
+                            const copy = { ...piece }
+                            copy.price = parseInt(event.target.value)
+                            setNewPiece(copy)
+                        }} />
+                </div>
 
                 <button type="publish" className="publishFormButton"
                 onClick={evt => {
