@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "./art.css"
 
 export const Art = ({ art_piece, token }) => {
@@ -6,7 +7,10 @@ export const Art = ({ art_piece, token }) => {
         <>
             <div class="tile is-parent is-4">
                 <article className="tile is-child box art__piececard">
-                    <p className="title">{art_piece.title}</p>
+                    <p className="title"> 
+                    <Link to={`/piece/${art_piece.id}`}>
+                    {art_piece.title}
+                  </Link></p>
                     <p className="subtitle">{art_piece.subtitle}</p>
 
                     <img className="art__image" src={art_piece.image_url} alt={art_piece.image_url} />

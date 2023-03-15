@@ -6,3 +6,22 @@ export const getAllArt = () => {
     })
         .then(res => res.json())
 }
+
+export const getCurrentUserPieces = () => {
+    return fetch(`http://localhost:8000/art?user`,
+      {
+        headers: {
+          "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        }
+      })
+      .then(res => res.json())
+  };
+
+  export const getSinglePiece = (id) => {
+    return fetch(`http://localhost:8000/art/${id}`, 
+    {
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+      }
+    }).then((res) => res.json())
+  }
