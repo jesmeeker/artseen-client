@@ -9,7 +9,6 @@ import { useNavigate, useParams } from "react-router-dom"
 export const EditPieceForm = ({ token }) => {
     const navigate = useNavigate()
     const { pieceId } = useParams()
-    // const [pieceSubTypes, setPieceSubTypes] = useState(new Set())
     const [piece, setNewPiece] = useState({
         title: "",
         subtitle: "",
@@ -66,47 +65,8 @@ export const EditPieceForm = ({ token }) => {
                             copy.push(subtype.id)
                         }
                         setSelectedSubTypes(copy)
-
-                        // let copy = new Set(pieceSubTypes)
-                        // for (const subtype of data.subtypes) {
-                        //     copy.add(subtype.id)}
-                        // setPieceSubTypes(copy)
                     })
-                    // .then(()=> {
-                    //     const copy = []
-                    //     for (const subtype of piece.subtypes){
-                    //         copy.add(subtype.id)
-                    //     }
-                    //     setSelectedSubTypes(copy)
-                    // })
     }, [pieceId])
-
-    // useEffect(() => {
-    //     getSinglePiece(pieceId)
-    //                 .then((data) => {
-    //                     data.arttype = parseInt(data.arttype.id)
-    //                     data.surface = parseInt(data.surface?.id)
-    //                     data.media = parseInt(data.media.id)
-    //                     setNewPiece(data)
-
-    //                     let copy = new Set(pieceSubTypes)
-    //                     for (const subtype of data.subtypes) {
-    //                         copy.add(subtype.id)
-    //                     setPieceSubTypes(copy)
-
-    //                     .then(() => {
-    //                         const subtypes = []
-    //                         subtypes = Array.from(pieceSubTypes)
-    //                         setSelectedSubTypes(subtypes)
-    //                     })
-    //                 }}
-    //     )}, [pieceId])
-
-    // const subtypeArr = (subtype) => {
-    //     let copy = new Set(pieceSubTypes)
-    //     copy.has(subtype) ? copy.delete(subtype) : copy.add(subtype)
-    //     setPieceSubTypes(copy)
-    // }
 
     return (
         <form className="addNewPieceForm">
@@ -197,14 +157,12 @@ export const EditPieceForm = ({ token }) => {
                             }
                         </select>
                     </div>
-                    {/* <p>Your piece subtypes: {selectedSubTypes.join(', ')}</p> */}
                     <label className="label">Primary Media</label>
                     <div className="form-group">
                         <select
                             name="media"
                             className="form-control"
                             defaultValue={piece.media}
-                            // defaultValue={piece.media}
                             onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.media = parseInt(event.target.value)
@@ -405,7 +363,6 @@ export const EditPieceForm = ({ token }) => {
                                 let copy = { ...piece }
                                 copy.subtypes = selectedSubTypes
                                 updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
-                            
                         }
                         }
                         className="button is-rounded is-link is-small"

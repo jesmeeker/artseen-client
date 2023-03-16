@@ -133,7 +133,6 @@ export const AddPieceForm = ({ token }) => {
                                 filteredSubTypes.map(subtype => (
                                     <option
                                         key={`subtype--${subtype.id}`}
-                                        // onClick={() => subtypeArr(subtype.id)}
                                         value={subtype.id}>
                                         {subtype.label}
                                     </option>
