@@ -43,9 +43,6 @@ export const PieceForms = ({ token }) => {
         newPiece[event.target.name] = event.target.value
         setNewPiece(newPiece)
     }
-    let arttype = null
-    let surface = null
-    let media = null
 
     useEffect(() => {
         getAllArtTypes().then((data) => setArtTypes(data))
