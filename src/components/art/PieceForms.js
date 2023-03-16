@@ -241,7 +241,6 @@ export const PieceForms = ({ token }) => {
                             <input
                                 type="number"
                                 name="height"
-
                                 placeholder="height (inches)"
                                 defaultValue={piece.height}
                                 onChange={handleNewPieceInfo} />
@@ -275,7 +274,6 @@ export const PieceForms = ({ token }) => {
                             className="form-control"
                             checked={piece.available_purchase === true}
                             value={piece.available_purchase}
-                            // defaultValue={piece.available_purchase}
                             onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.available_purchase ? copy.available_purchase = false : copy.available_purchase = true
