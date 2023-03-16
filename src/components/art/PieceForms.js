@@ -154,7 +154,7 @@ export const PieceForms = ({ token }) => {
                             name="subType"
                             className="form-control"
                             defaultValue={piece.subtypes}
-                            onChange={(event) => {
+                            onClick={(event) => {
                                 const copy = { ...piece }
                                 copy.subType = parseInt(event.target.value)
                                 setNewPiece(copy)
@@ -241,7 +241,6 @@ export const PieceForms = ({ token }) => {
                             <input
                                 type="number"
                                 name="height"
-
                                 placeholder="height (inches)"
                                 defaultValue={piece.height}
                                 onChange={handleNewPieceInfo} />
@@ -275,7 +274,6 @@ export const PieceForms = ({ token }) => {
                             className="form-control"
                             checked={piece.available_purchase === true}
                             value={piece.available_purchase}
-                            // defaultValue={piece.available_purchase}
                             onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.available_purchase ? copy.available_purchase = false : copy.available_purchase = true
@@ -378,9 +376,13 @@ export const PieceForms = ({ token }) => {
                         onClick={(e) => {
                             e.preventDefault()
                             if (pieceId) {
-                                updatePiece(piece.id, piece).then(() => navigate("/portfolio"))
+                                let copy = { ...piece }
+                                copy.subtypes = Array.from(pieceSubTypes)
+                                updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
                             } else {
-                                addNewPiece(piece).then(() => navigate("/portfolio"))
+                                let copy = { ...piece }
+                                copy.subtypes = Array.from(pieceSubTypes)
+                                addNewPiece(copy).then(() => navigate("/portfolio"))
                             }
                         }
                         }
