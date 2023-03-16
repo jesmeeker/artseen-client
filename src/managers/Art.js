@@ -24,7 +24,7 @@ export const getCurrentUserPieces = () => {
       headers: {
         "Authorization": `Token ${localStorage.getItem("artseen_token")}`
       }
-    }).then((res) => res.json())
+    }).then(res => res.json())
   }
 
   export const addNewPiece = (postbody) => { 

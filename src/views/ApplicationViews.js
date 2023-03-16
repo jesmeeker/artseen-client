@@ -15,6 +15,8 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route path="/">
           <Route index element={<PieceFeed token={token} />} />
+          <Route path="add" element={<PieceForms />} />
+          <Route path=":pieceId/edit" element={<PieceForms />} />
         </Route>
         <Route path="/piece" >
             <Route index element={<PieceFeed/>} />

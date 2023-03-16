@@ -17,7 +17,7 @@ export const PieceForms = ({ token }) => {
         arttype: 0,
         subtypes: [],
         media: 0,
-        surface: 0,
+        surface: null,
         image_url: "",
         length: null,
         width: null,
@@ -43,40 +43,42 @@ export const PieceForms = ({ token }) => {
         newPiece[event.target.name] = event.target.value
         setNewPiece(newPiece)
     }
+    let arttype = null
+    let surface = null
+    let media = null
+
+    useEffect(() => {
+        getAllArtTypes().then((data) => setArtTypes(data))
+        getAllSubTypes()
+            .then((data) => {
+                setSubTypes(data)
+                setFilteredSubTypes(data)
+            })
+        getAllMediums().then((data) => setMediums(data))
+        getAllSurfaces().then((data) => setSurfaces(data))
+
+    }, [])
 
     useEffect(() => {
         if (pieceId) {
-            getSinglePiece(pieceId).then((data) => {
-                data.arttype = data.arttype.id
-                data.surface = data.surface.id
-                data.media = data.media.id
-                setNewPiece(data)
-                let copy = new Set(pieceSubTypes)
-                for (const subtype of data.subtypes) {
-                    copy.add(subtype.id)
-                }
-                setPieceSubTypes(copy)
-            })
-            getAllArtTypes().then((data) => setArtTypes(data))
-            getAllSubTypes()
-                .then((data) => {
-                    setSubTypes(data)
-                    setFilteredSubTypes(data)
-                })
-            getAllMediums().then((data) => setMediums(data))
-            getAllSurfaces().then((data) => setSurfaces(data))
+            getSinglePiece(pieceId)
+                    .then((data) => {
+                        data.arttype = parseInt(data.arttype.id)
+                        data.surface = parseInt(data.surface?.id)
+                        data.media = parseInt(data.media.id)
+                        setNewPiece(data)
+
+                        let copy = new Set(pieceSubTypes)
+                        for (const subtype of data.subtypes) {
+                            copy.add(subtype.id)
+                        setPieceSubTypes(copy)
+                        }}
+                    )
+
         }
-        else {
-            getAllArtTypes().then((data) => setArtTypes(data))
-            getAllSubTypes()
-                .then((data) => {
-                    setSubTypes(data)
-                    setFilteredSubTypes(data)
-                })
-            getAllMediums().then((data) => setMediums(data))
-            getAllSurfaces().then((data) => setSurfaces(data))
-        }
-    }, [pieceId])
+        }, [pieceId])
+
+    
 
     const subtypeArr = (subtype) => {
         let copy = new Set(pieceSubTypes)
