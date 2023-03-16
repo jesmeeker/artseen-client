@@ -5,7 +5,7 @@ import { Portfolio } from "../components/art/Portfolio"
 import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
-import { AddPieceForm } from "../components/art/AddPieceForm"
+import { PieceForms } from "../components/art/PieceForms"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -22,7 +22,8 @@ export const ApplicationViews = ({ token, setToken }) => {
         </Route>
         <Route path="/portfolio" >
             <Route index element={<Portfolio/>} />
-            <Route path="add" element={<AddPieceForm />} />
+            <Route path="add" element={<PieceForms />} />
+            <Route path=":pieceId/edit" element={<PieceForms />} />
         </Route>
         <Route element={<Authorized token={token} />}>
           {/* Add Routes here */}

@@ -36,3 +36,14 @@ export const getCurrentUserPieces = () => {
         body: JSON.stringify(postbody),
     })
   }
+  
+  export const updatePiece = (id, postbody) => { 
+    return fetch(`http://localhost:8000/art/${id}`, {
+        method: "PUT",
+        headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        },
+        body: JSON.stringify(postbody),
+    })
+  }
