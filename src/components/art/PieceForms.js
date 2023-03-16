@@ -154,7 +154,7 @@ export const PieceForms = ({ token }) => {
                             name="subType"
                             className="form-control"
                             defaultValue={piece.subtypes}
-                            onChange={(event) => {
+                            onClick={(event) => {
                                 const copy = { ...piece }
                                 copy.subType = parseInt(event.target.value)
                                 setNewPiece(copy)
@@ -378,9 +378,13 @@ export const PieceForms = ({ token }) => {
                         onClick={(e) => {
                             e.preventDefault()
                             if (pieceId) {
-                                updatePiece(piece.id, piece).then(() => navigate("/portfolio"))
+                                let copy = { ...piece }
+                                copy.subtypes = Array.from(pieceSubTypes)
+                                updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
                             } else {
-                                addNewPiece(piece).then(() => navigate("/portfolio"))
+                                let copy = { ...piece }
+                                copy.subtypes = Array.from(pieceSubTypes)
+                                addNewPiece(copy).then(() => navigate("/portfolio"))
                             }
                         }
                         }
