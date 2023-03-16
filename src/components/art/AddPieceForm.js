@@ -6,16 +6,14 @@ import { useEffect, useState } from "react"
 import { addNewPiece, getSinglePiece, updatePiece } from "../../managers/Art"
 import { useNavigate, useParams } from "react-router-dom"
 
-export const PieceForms = ({ token }) => {
+export const AddPieceForm = ({ token }) => {
     const navigate = useNavigate()
-    const { pieceId } = useParams()
-    const [pieceSubTypes, setPieceSubTypes] = useState(new Set())
+    const [selectedSubTypes, setSelectedSubTypes] = useState([])
     const [piece, setNewPiece] = useState({
         title: "",
         subtitle: "",
         about: "",
         arttype: 0,
-        subtypes: [],
         media: 0,
         surface: null,
         image_url: "",
@@ -56,38 +54,11 @@ export const PieceForms = ({ token }) => {
 
     }, [])
 
-    useEffect(() => {
-        if (pieceId) {
-            getSinglePiece(pieceId)
-                    .then((data) => {
-                        data.arttype = parseInt(data.arttype.id)
-                        data.surface = parseInt(data.surface?.id)
-                        data.media = parseInt(data.media.id)
-                        setNewPiece(data)
-
-                        let copy = new Set(pieceSubTypes)
-                        for (const subtype of data.subtypes) {
-                            copy.add(subtype.id)
-                        setPieceSubTypes(copy)
-                        }}
-                    )
-        }
-        }, [pieceId])
-
-    
-
-    const subtypeArr = (subtype) => {
-        let copy = new Set(pieceSubTypes)
-        copy.has(subtype) ? copy.delete(subtype) : copy.add(subtype)
-        setPieceSubTypes(copy)
-    }
-
     return (
         <form className="addNewPieceForm">
-            <div className="art__page_header">{
-                pieceId ? <h1 className="title is-1">edit piece</h1> : <h1 className="title is-1">add piece</h1>
-            }
-        </div>
+            <div className="art__page_header">
+                <h1 className="title is-1">add piece</h1>
+            </div>
             <div className="art__container">
                 <fieldset>
                     <div className="form-group">
@@ -98,7 +69,6 @@ export const PieceForms = ({ token }) => {
                             required autoFocus
                             className="title-form-control"
                             placeholder="Title"
-                            defaultValue={piece.title}
                             onChange={handleNewPieceInfo} />
                     </div>
                     <div className="form-group">
@@ -109,7 +79,6 @@ export const PieceForms = ({ token }) => {
                             required
                             className="subtitle-form-control"
                             placeholder="Subtitle"
-                            defaultValue={piece.subtitle}
                             onChange={handleNewPieceInfo} />
                     </div>
                     <div className="form-group">
@@ -122,7 +91,6 @@ export const PieceForms = ({ token }) => {
                             required autoFocus
                             className="form-control"
                             placeholder="About"
-                            defaultValue={piece.about}
                             onChange={handleNewPieceInfo}
                         />
                     </div>
@@ -131,13 +99,14 @@ export const PieceForms = ({ token }) => {
                         <select
                             name="arttype"
                             className="form-control"
-                            defaultValue={piece.arttype}
+                            value={piece.arttype}
                             onChange={(event) => {
                                 getSubTypesByArtypeId(event.target.value).then((data) => setFilteredSubTypes(data))
                                 const copy = { ...piece }
                                 copy.arttype = parseInt(event.target.value)
                                 setNewPiece(copy)
                             }}>
+                            <option value="0">Select Primary Art Type</option>
                             {arttypes.map(arttype => (
                                 <option
                                     key={`category--${arttype.id}`}
@@ -150,21 +119,20 @@ export const PieceForms = ({ token }) => {
                     <div className="field">
                         <label className="label">Subtype</label>
                         <select
-                            multiple
-                            name="subType"
+                            multiple={true}
+                            name="subtype"
                             className="form-control"
-                            defaultValue={piece.subtypes}
-                            onClick={(event) => {
-                                const copy = { ...piece }
-                                copy.subType = parseInt(event.target.value)
-                                setNewPiece(copy)
+                            value={selectedSubTypes}
+                            onChange={(e) => {
+                                const options = [...e.target.selectedOptions]
+                                const values = options.map(option => parseInt(option.value))
+                                setSelectedSubTypes(values)
                             }}>
                             <option value="0">Sub Art Category:</option>
                             {
                                 filteredSubTypes.map(subtype => (
                                     <option
                                         key={`subtype--${subtype.id}`}
-                                        onClick={() => subtypeArr(subtype.id)}
                                         value={subtype.id}>
                                         {subtype.label}
                                     </option>
@@ -177,13 +145,13 @@ export const PieceForms = ({ token }) => {
                         <select
                             name="media"
                             className="form-control"
-                            defaultValue={piece.media}
-                            // defaultValue={piece.media}
+                            value={piece.media}
                             onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.media = parseInt(event.target.value)
                                 setNewPiece(copy)
                             }}>
+                            <option value="0">Select a medium:</option>
                             {mediums.map(media => (
                                 <option
                                     key={`category--${media.id}`}
@@ -198,13 +166,13 @@ export const PieceForms = ({ token }) => {
                         <select
                             name="surface"
                             className="form-control"
-                            defaultValue={piece.surface}
-                            // defaultValue={piece.surface}
+                            value={piece.surface}
                             onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.surface = parseInt(event.target.value)
                                 setNewPiece(copy)
                             }}>
+                            <option value="0">Select a medium:</option>
                             {surfaces.map(surface => (
                                 <option
                                     key={`category--${surface.id}`}
@@ -222,7 +190,7 @@ export const PieceForms = ({ token }) => {
                                 name="length"
                                 required
                                 placeholder="length (inches)"
-                                defaultValue={piece.length}
+                                value={piece.length}
                                 onChange={handleNewPieceInfo} />
                         </div>
                     </div>
@@ -232,7 +200,7 @@ export const PieceForms = ({ token }) => {
                                 type="number"
                                 name="width"
                                 placeholder="width (inches)"
-                                defaultValue={piece.width}
+                                value={piece.width}
                                 onChange={handleNewPieceInfo} />
                         </div>
                     </div>
@@ -242,7 +210,7 @@ export const PieceForms = ({ token }) => {
                                 type="number"
                                 name="height"
                                 placeholder="height (inches)"
-                                defaultValue={piece.height}
+                                dvalue={piece.height}
                                 onChange={handleNewPieceInfo} />
                         </div>
                     </div>
@@ -252,7 +220,7 @@ export const PieceForms = ({ token }) => {
                                 type="text"
                                 name="weight"
                                 placeholder="weight (pounds)"
-                                defaultValue={piece.weight}
+                                value={piece.weight}
                                 onChange={handleNewPieceInfo} />
                         </div>
                     </div>
@@ -263,14 +231,14 @@ export const PieceForms = ({ token }) => {
                             name="image_url"
                             className="image-form-control"
                             placeholder="Image URL"
-                            defaultValue={piece.image_url}
+                            value={piece.image_url}
                             onChange={handleNewPieceInfo} />
                     </div>
                     <label className="label">Details about how to share your piece:</label>
                     <div className="field">
                         <input
                             name="purchase"
-                            type="radio"
+                            type="checkbox"
                             className="form-control"
                             checked={piece.available_purchase === true}
                             value={piece.available_purchase}
@@ -285,7 +253,7 @@ export const PieceForms = ({ token }) => {
                     <div className="field">
                         <input
                             name="ship"
-                            type="radio"
+                            type="checkbox"
                             className="form-control"
                             checked={piece.will_ship === true}
                             value={piece.will_ship}
@@ -300,7 +268,7 @@ export const PieceForms = ({ token }) => {
                     <div className="field">
                         <input
                             name="show"
-                            type="radio"
+                            type="checkbox"
                             className="form-control"
                             checked={piece.available_show === true}
                             value={piece.available_show}
@@ -315,7 +283,7 @@ export const PieceForms = ({ token }) => {
                     <div className="field">
                         <input
                             name="unique"
-                            type="radio"
+                            type="checkbox"
                             className="form-control"
                             checked={piece.unique === true}
                             value={piece.unique}
@@ -330,7 +298,7 @@ export const PieceForms = ({ token }) => {
                     <div className="field">
                         <input
                             name="private"
-                            type="radio"
+                            type="checkbox"
                             className="form-control"
                             checked={piece.private === true}
                             value={piece.private}
@@ -375,16 +343,10 @@ export const PieceForms = ({ token }) => {
                     <button type="publish"
                         onClick={(e) => {
                             e.preventDefault()
-                            if (pieceId) {
-                                let copy = { ...piece }
-                                copy.subtypes = Array.from(pieceSubTypes)
-                                updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
-                            } else {
-                                let copy = { ...piece }
-                                copy.subtypes = Array.from(pieceSubTypes)
-                                addNewPiece(copy).then(() => navigate("/portfolio"))
+                            let copy = { ...piece }
+                            copy.subtypes = selectedSubTypes
+                            addNewPiece(copy).then(() => navigate("/portfolio"))
                             }
-                        }
                         }
                         className="button is-rounded is-link is-small"
                     >Submit
