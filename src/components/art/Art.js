@@ -18,9 +18,14 @@ export const Art = ({ art_piece, token }) => {
                     <div>{art_piece.arttype?.label} {art_piece.media?.label}</div>
                     <div>{art_piece.length}'x{art_piece.width}'x{art_piece.height}'</div>
                     <div>${art_piece.price}</div>
-                    <button className="button is-rounded" onClick={() => navigate(`${art_piece.id}/edit`)}>
+                    {art_piece.creator ? (
+
+                        
+                        <button className="button is-rounded is-link is-small" onClick={() => navigate(`${art_piece.id}/edit`)}>
                     Edit
                 </button>
+                            ) : ("")
+                    }
                 </article>
             </div>
             
