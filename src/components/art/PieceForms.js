@@ -17,7 +17,7 @@ export const PieceForms = ({ token }) => {
         arttype: 0,
         subtypes: [],
         media: 0,
-        surface: 0,
+        surface: null,
         image_url: "",
         length: null,
         width: null,
@@ -45,38 +45,36 @@ export const PieceForms = ({ token }) => {
     }
 
     useEffect(() => {
-        if (pieceId) {
-            getSinglePiece(pieceId).then((data) => {
-                data.arttype = data.arttype.id
-                data.surface = data.surface.id
-                data.media = data.media.id
-                setNewPiece(data)
-                let copy = new Set(pieceSubTypes)
-                for (const subtype of data.subtypes) {
-                    copy.add(subtype.id)
-                }
-                setPieceSubTypes(copy)
+        getAllArtTypes().then((data) => setArtTypes(data))
+        getAllSubTypes()
+            .then((data) => {
+                setSubTypes(data)
+                setFilteredSubTypes(data)
             })
-            getAllArtTypes().then((data) => setArtTypes(data))
-            getAllSubTypes()
-                .then((data) => {
-                    setSubTypes(data)
-                    setFilteredSubTypes(data)
-                })
-            getAllMediums().then((data) => setMediums(data))
-            getAllSurfaces().then((data) => setSurfaces(data))
+        getAllMediums().then((data) => setMediums(data))
+        getAllSurfaces().then((data) => setSurfaces(data))
+
+    }, [])
+
+    useEffect(() => {
+        if (pieceId) {
+            getSinglePiece(pieceId)
+                    .then((data) => {
+                        data.arttype = parseInt(data.arttype.id)
+                        data.surface = parseInt(data.surface?.id)
+                        data.media = parseInt(data.media.id)
+                        setNewPiece(data)
+
+                        let copy = new Set(pieceSubTypes)
+                        for (const subtype of data.subtypes) {
+                            copy.add(subtype.id)
+                        setPieceSubTypes(copy)
+                        }}
+                    )
         }
-        else {
-            getAllArtTypes().then((data) => setArtTypes(data))
-            getAllSubTypes()
-                .then((data) => {
-                    setSubTypes(data)
-                    setFilteredSubTypes(data)
-                })
-            getAllMediums().then((data) => setMediums(data))
-            getAllSurfaces().then((data) => setSurfaces(data))
-        }
-    }, [pieceId])
+        }, [pieceId])
+
+    
 
     const subtypeArr = (subtype) => {
         let copy = new Set(pieceSubTypes)
@@ -133,7 +131,7 @@ export const PieceForms = ({ token }) => {
                         <select
                             name="arttype"
                             className="form-control"
-                            value={piece.arttype}
+                            defaultValue={piece.arttype}
                             onChange={(event) => {
                                 getSubTypesByArtypeId(event.target.value).then((data) => setFilteredSubTypes(data))
                                 const copy = { ...piece }
@@ -155,7 +153,7 @@ export const PieceForms = ({ token }) => {
                             multiple
                             name="subType"
                             className="form-control"
-                            value={piece.subtypes}
+                            defaultValue={piece.subtypes}
                             onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.subType = parseInt(event.target.value)
@@ -179,8 +177,8 @@ export const PieceForms = ({ token }) => {
                         <select
                             name="media"
                             className="form-control"
-                            value={piece.media}
                             defaultValue={piece.media}
+                            // defaultValue={piece.media}
                             onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.media = parseInt(event.target.value)
@@ -200,8 +198,8 @@ export const PieceForms = ({ token }) => {
                         <select
                             name="surface"
                             className="form-control"
-                            value={piece.surface}
                             defaultValue={piece.surface}
+                            // defaultValue={piece.surface}
                             onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.surface = parseInt(event.target.value)
@@ -224,7 +222,7 @@ export const PieceForms = ({ token }) => {
                                 name="length"
                                 required
                                 placeholder="length (inches)"
-                                value={piece.length}
+                                defaultValue={piece.length}
                                 onChange={handleNewPieceInfo} />
                         </div>
                     </div>
@@ -234,7 +232,7 @@ export const PieceForms = ({ token }) => {
                                 type="number"
                                 name="width"
                                 placeholder="width (inches)"
-                                value={piece.width}
+                                defaultValue={piece.width}
                                 onChange={handleNewPieceInfo} />
                         </div>
                     </div>
@@ -245,7 +243,7 @@ export const PieceForms = ({ token }) => {
                                 name="height"
 
                                 placeholder="height (inches)"
-                                value={piece.height}
+                                defaultValue={piece.height}
                                 onChange={handleNewPieceInfo} />
                         </div>
                     </div>
@@ -277,8 +275,8 @@ export const PieceForms = ({ token }) => {
                             className="form-control"
                             checked={piece.available_purchase === true}
                             value={piece.available_purchase}
-                            defaultValue={piece.available_purchase}
-                            onClick={(event) => {
+                            // defaultValue={piece.available_purchase}
+                            onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.available_purchase ? copy.available_purchase = false : copy.available_purchase = true
                                 setNewPiece(copy)
@@ -293,7 +291,7 @@ export const PieceForms = ({ token }) => {
                             className="form-control"
                             checked={piece.will_ship === true}
                             value={piece.will_ship}
-                            onClick={(event) => {
+                            onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.will_ship ? copy.will_ship = false : copy.will_ship = true
                                 setNewPiece(copy)
@@ -308,7 +306,7 @@ export const PieceForms = ({ token }) => {
                             className="form-control"
                             checked={piece.available_show === true}
                             value={piece.available_show}
-                            onClick={(event) => {
+                            onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.available_show ? copy.available_show = false : copy.available_show = true
                                 setNewPiece(copy)
@@ -323,7 +321,7 @@ export const PieceForms = ({ token }) => {
                             className="form-control"
                             checked={piece.unique === true}
                             value={piece.unique}
-                            onClick={(event) => {
+                            onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.unique ? copy.unique = false : copy.unique = true
                                 setNewPiece(copy)
@@ -338,7 +336,7 @@ export const PieceForms = ({ token }) => {
                             className="form-control"
                             checked={piece.private === true}
                             value={piece.private}
-                            onClick={(event) => {
+                            onChange={(event) => {
                                 const copy = { ...piece }
                                 copy.private ? copy.private = false : copy.private = true
                                 setNewPiece(copy)
