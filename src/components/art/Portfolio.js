@@ -29,7 +29,7 @@ export const Portfolio = ({ token }) => {
             </div>
             <div className="art__container">
                 {art.map((art_piece) => (
-                    <Art key={art_piece.id} art_piece={art_piece} token={token} />
+                    <Art key={art_piece.id} art_piece={art_piece} token={token} state={"Portfolio"} setArt={setArt}/>
                 ))}
             </div>
         </>

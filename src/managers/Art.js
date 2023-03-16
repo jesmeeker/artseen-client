@@ -1,8 +1,9 @@
 export const getAllArt = () => {
-    return fetch("http://localhost:8000/art", {
+    return fetch(`http://localhost:8000/art`, 
+    {
       headers: {
         "Authorization": `Token ${localStorage.getItem("artseen_token")}`
-      },
+      }
     })
         .then(res => res.json())
 }
@@ -45,5 +46,14 @@ export const getCurrentUserPieces = () => {
         "Authorization": `Token ${localStorage.getItem("artseen_token")}`
         },
         body: JSON.stringify(postbody),
+    })
+  }
+
+  export const deletePiece = (id) => {
+    return fetch(`http://localhost:8000/art/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+      },
     })
   }
