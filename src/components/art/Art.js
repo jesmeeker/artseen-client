@@ -1,7 +1,36 @@
 import { Link, useNavigate } from "react-router-dom"
+import { deletePiece, getAllArt, getCurrentUserPieces } from "../../managers/Art"
 import "./art.css"
 
-export const Art = ({ art_piece, token }) => {
+export const Art = ({ art_piece, setArt, state }) => {
+    const getUserPieces = () => {
+        getCurrentUserPieces().then((data) => {setArt(data)})
+    }
+    const getAllPieces = () => {
+        getAllArt().then((data) => {setArt(data)})
+    }
+
+    const deleteWindow = (pieceId) => {
+        if (
+          window.confirm(
+            "Are you sure? This action is permanent."
+          )
+        ) {
+            deletePiece(pieceId).then(
+                () => {
+                    if (state === "Portfolio")
+                    {
+                        getUserPieces()
+                    } 
+                    else if (state === "PieceFeed") {
+                        getAllPieces()
+                    }
+                }
+            )
+        } else {
+          
+        }
+      }
     const navigate = useNavigate()
     return (
         <>
@@ -20,10 +49,14 @@ export const Art = ({ art_piece, token }) => {
                     <div>${art_piece.price}</div>
                     {art_piece.creator ? (
 
-                        
+                        <>
                         <button className="button is-rounded is-link is-small" onClick={() => navigate(`${art_piece.id}/edit`)}>
                     Edit
                 </button>
+                        <button className="button is-rounded is-danger is-light is-small" onClick={() => deleteWindow(art_piece.id)}>
+                    Delete
+                </button>
+                        </>
                             ) : ("")
                     }
                 </article>

@@ -14,14 +14,15 @@ export const PieceFeed = ({ token, authorChoice, selectedCategory }) => {
     return (
         <>  
             <div className="art__container">
-                <h1 className="title is-1">art</h1>
-                <button className="button is-rounded" onClick={() => navigate("add")}>
+                <div className="art__page_header"><h1 className="title is-1">art</h1>
+                <button className="button is-rounded is-link" onClick={() => navigate("add")}>
                     +Add Piece
                 </button>
+                </div>
             </div>
             <div className="art__container">
                 {art.map((art_piece) => (
-                    <Art key={art_piece.id} art_piece={art_piece} token={token} />
+                    <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"}/>
                 ))}
             </div>
         </>
