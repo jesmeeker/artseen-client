@@ -32,7 +32,7 @@ html, body {
 .navbar-item, .navbar-link { 
   color: #309875;
   padding-left: 10px; 
-  background-color: #131313;
+  background-color: #FB9970;
 }
 
 .title{
@@ -48,6 +48,6 @@ html, body {
 }
 
 a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
-  background-color: #131313;
-  color: #cccccc;
+  background-color: #FB9970;
+  color: #6295AA;
 }
