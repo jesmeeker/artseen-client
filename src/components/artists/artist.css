@@ -51,11 +51,16 @@
     justify-content: space-between;
     border-bottom: 1px solid rgb(199, 199, 199);
 }
-input {
+input, select {
     background-color: transparent;
     border: none;
     width: fit-content;
     height: auto
+}
+
+.firstname {
+    width: auto;
+    margin: 0
 }
 
 textarea {
