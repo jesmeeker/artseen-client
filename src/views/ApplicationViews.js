@@ -9,6 +9,7 @@ import { AddPieceForm, PieceForms } from "../components/art/AddPieceForm"
 import { EditPieceForm } from "../components/art/EditPieceForm"
 import { NewFile } from "../components/art/NewFile"
 import { Profile } from "../components/artists/Profile"
+import { EditProfile } from "../components/artists/EditProfile"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -32,7 +33,7 @@ export const ApplicationViews = ({ token, setToken }) => {
         </Route>
         <Route path="/profile" >
             <Route index element={<Profile/>} />
-            <Route path=":artistId/edit" element={<AddPieceForm />} />
+            <Route path="edit" element={<EditProfile />} />
         </Route>
         <Route path="/testing" element={<NewFile />} />
         <Route element={<Authorized token={token} />}>
