@@ -1,24 +1,4 @@
-// import { AuthorizedViews } from './AuthorizedViews'
-// import { UnauthorizedViews } from './UnauthorizedView'
-
-// export const ApplicationViews = ({ setToken }) => {
-//   const isAuthenticated = () => sessionStorage.getItem("artseen_token") !== null
-//   console.log(isAuthenticated)
-//   if (!isAuthenticated()) {
-//     return <>
-//        <UnauthorizedViews />
-//     </>
-//   } else if (isAuthenticated()) {
-//     return (
-//       <>
-//         LOGGED IN
-//         <AuthorizedViews />
-//       </>
-//     )
-//   }
-// } 
-
-import { Route, Routes } from "react-router-dom"
+import { Outlet, Route, Routes } from "react-router-dom"
 import { ArtFeed, PieceFeed } from "../components/art/PieceFeed"
 import { PieceDetail } from "../components/art/PieceDetail"
 import { Portfolio } from "../components/art/Portfolio"
@@ -27,11 +7,16 @@ import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { AddPieceForm, PieceForms } from "../components/art/AddPieceForm"
 import { EditPieceForm } from "../components/art/EditPieceForm"
+import { NewFile } from "../components/art/NewFile"
+import { Profile } from "../components/artists/Profile"
+import { LandingPage } from "../components/home/LandingPage"
 
-export const ApplicationViews = ({ token, setToken }) => {
+export const AuthorizedViews = ({ token, setToken }) => {
   return (
     <>
       <Routes>
+            
+          
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route path="/">
@@ -48,10 +33,17 @@ export const ApplicationViews = ({ token, setToken }) => {
             <Route path="add" element={<AddPieceForm />} />
             <Route path=":pieceId/edit" element={<EditPieceForm />} />
         </Route>
-        <Route element={<Authorized token={token} />}>
-          {/* Add Routes here */}
+        <Route path="/profile" >
+            <Route index element={<Profile/>} />
         </Route>
+        <Route path="/testing" element={<NewFile />} />
+       
+        
       </Routes>
     </>
   )
 }
+
+{/* <Route element={<Authorized token={token} />}>
+
+</Route> */}

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { addNewPiece, getSinglePiece, updatePiece } from "../../managers/Art"
 import { useNavigate, useParams } from "react-router-dom"
 
-export const EditPieceForm = ({ token }) => {
+export const EditPieceForm = ({ }) => {
     const navigate = useNavigate()
     const { pieceId } = useParams()
     const [piece, setNewPiece] = useState({

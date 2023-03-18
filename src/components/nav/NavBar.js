@@ -31,7 +31,7 @@ export const NavBar = ({ token, setToken }) => {
             aria-label="main navigation"
         >
             <div className="navbar-brand">
-                <a className="navbar-item" href="/">
+                <a className="navbar-item" href="/home">
                     {/* <img src={Logo} height="3rem" alt="Rare Logo" />{" "} */}
                     <h1 class="title is-3" className="rareHeader">ArtSeen</h1>
                 </a>
@@ -93,10 +93,10 @@ export const NavBar = ({ token, setToken }) => {
                                     </button>
                                 ) : (
                                     <>
-                                        <Link to="/register" className="button is-rounded is-link">
+                                        <Link to="/register" className="button is-rounded is-info">
                                             Register
                                         </Link>
-                                        <Link to="/login" className="button is-rounded is-outlined">
+                                        <Link to="/login" className="button is-rounded">
                                             Login
                                         </Link>
                                     </>
