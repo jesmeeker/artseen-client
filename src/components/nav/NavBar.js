@@ -31,7 +31,7 @@ export const NavBar = ({ token, setToken }) => {
             aria-label="main navigation"
         >
             <div className="navbar-brand">
-                <a className="navbar-item" href="/home">
+                <a className="navbar-item" href="/">
                     {/* <img src={Logo} height="3rem" alt="Rare Logo" />{" "} */}
                     <h1 class="title is-3" className="rareHeader">ArtSeen</h1>
                 </a>

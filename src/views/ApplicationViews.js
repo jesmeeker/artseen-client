@@ -27,6 +27,7 @@ import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { AddPieceForm, PieceForms } from "../components/art/AddPieceForm"
 import { EditPieceForm } from "../components/art/EditPieceForm"
+import { Profile } from "../components/artists/Profile"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -48,8 +49,10 @@ export const ApplicationViews = ({ token, setToken }) => {
             <Route path="add" element={<AddPieceForm />} />
             <Route path=":pieceId/edit" element={<EditPieceForm />} />
         </Route>
+        <Route path="/profile" >
+            <Route index element={<Profile/>} />
+        </Route>
         <Route element={<Authorized token={token} />}>
-          {/* Add Routes here */}
         </Route>
       </Routes>
     </>

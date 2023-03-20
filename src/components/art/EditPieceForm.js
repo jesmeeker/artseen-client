@@ -356,18 +356,27 @@ export const EditPieceForm = ({ }) => {
                                 }} />
                         </div>
                     </div>
+                    <div className="form-group"> 
                     <button type="publish"
                         onClick={(e) => {
                             e.preventDefault()
-
+                            
                             let copy = { ...piece }
                             copy.subtypes = selectedSubTypes
                             updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
                         }
-                        }
-                        className="button is-rounded is-link is-small"
+                    }
+                    className="button is-rounded is-link is-small" style={ {margin: "1rem"} }
                     >Submit
                     </button>
+                    <button type="publish"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            navigate("/portfolio")}}
+                    className="button is-rounded is-danger is-light is-small" style={ {margin: "1rem"} }
+                    >Cancel
+                    </button>
+                    </div>
                 </fieldset>
             </div>
         </form>
