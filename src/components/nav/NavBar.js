@@ -59,7 +59,7 @@ export const NavBar = ({ token, setToken }) => {
                                     My Portfolio
                                 </Link>
                                 <span className="padding">/</span>
-                                <Link to="/categories" className="navbar-item">
+                                <Link to="/add" className="navbar-item">
                                     Add Piece
                                 </Link>
                                 <span className="padding">/</span>
@@ -93,10 +93,10 @@ export const NavBar = ({ token, setToken }) => {
                                     </button>
                                 ) : (
                                     <>
-                                        <Link to="/register" className="button is-rounded is-link">
+                                        <Link to="/register" className="button is-rounded is-info">
                                             Register
                                         </Link>
-                                        <Link to="/login" className="button is-rounded is-outlined">
+                                        <Link to="/login" className="button is-rounded">
                                             Login
                                         </Link>
                                     </>

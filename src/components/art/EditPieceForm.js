@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { addNewPiece, getSinglePiece, updatePiece } from "../../managers/Art"
 import { useNavigate, useParams } from "react-router-dom"
 
-export const EditPieceForm = ({ token }) => {
+export const EditPieceForm = ({ }) => {
     const navigate = useNavigate()
     const { pieceId } = useParams()
     const [piece, setNewPiece] = useState({
@@ -54,25 +54,25 @@ export const EditPieceForm = ({ token }) => {
         getAllMediums().then((data) => setMediums(data))
         getAllSurfaces().then((data) => setSurfaces(data))
         getSinglePiece(pieceId)
-                    .then((data) => {
-                        data.arttype = parseInt(data.arttype.id)
-                        data.surface = parseInt(data.surface?.id)
-                        data.media = parseInt(data.media.id)
-                        setNewPiece(data)
+            .then((data) => {
+                data.arttype = parseInt(data.arttype.id)
+                data.surface = parseInt(data.surface?.id)
+                data.media = parseInt(data.media.id)
+                setNewPiece(data)
 
-                        let copy = []
-                        for (const subtype of data.subtypes){
-                            copy.push(subtype.id)
-                        }
-                        setSelectedSubTypes(copy)
-                    })
+                let copy = []
+                for (const subtype of data.subtypes) {
+                    copy.push(subtype.id)
+                }
+                setSelectedSubTypes(copy)
+            })
     }, [pieceId])
 
     return (
         <form className="addNewPieceForm">
             <div className="art__page_header">
                 <h1 className="title is-1">edit piece</h1>
-        </div>
+            </div>
             <div className="art__container">
                 <fieldset>
                     <div className="form-group">
@@ -356,18 +356,27 @@ export const EditPieceForm = ({ token }) => {
                                 }} />
                         </div>
                     </div>
+                    <div className="form-group"> 
                     <button type="publish"
                         onClick={(e) => {
                             e.preventDefault()
                             
-                                let copy = { ...piece }
-                                copy.subtypes = selectedSubTypes
-                                updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
+                            let copy = { ...piece }
+                            copy.subtypes = selectedSubTypes
+                            updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
                         }
-                        }
-                        className="button is-rounded is-link is-small"
+                    }
+                    className="button is-rounded is-link is-small" style={ {margin: "1rem"} }
                     >Submit
                     </button>
+                    <button type="publish"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            navigate("/portfolio")}}
+                    className="button is-rounded is-danger is-light is-small" style={ {margin: "1rem"} }
+                    >Cancel
+                    </button>
+                    </div>
                 </fieldset>
             </div>
         </form>

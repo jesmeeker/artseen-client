@@ -1,3 +1,23 @@
+// import { AuthorizedViews } from './AuthorizedViews'
+// import { UnauthorizedViews } from './UnauthorizedView'
+
+// export const ApplicationViews = ({ setToken }) => {
+//   const isAuthenticated = () => sessionStorage.getItem("artseen_token") !== null
+//   console.log(isAuthenticated)
+//   if (!isAuthenticated()) {
+//     return <>
+//        <UnauthorizedViews />
+//     </>
+//   } else if (isAuthenticated()) {
+//     return (
+//       <>
+//         LOGGED IN
+//         <AuthorizedViews />
+//       </>
+//     )
+//   }
+// } 
+
 import { Route, Routes } from "react-router-dom"
 import { ArtFeed, PieceFeed } from "../components/art/PieceFeed"
 import { PieceDetail } from "../components/art/PieceDetail"
@@ -7,6 +27,7 @@ import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { AddPieceForm, PieceForms } from "../components/art/AddPieceForm"
 import { EditPieceForm } from "../components/art/EditPieceForm"
+import { Profile } from "../components/artists/Profile"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -28,8 +49,10 @@ export const ApplicationViews = ({ token, setToken }) => {
             <Route path="add" element={<AddPieceForm />} />
             <Route path=":pieceId/edit" element={<EditPieceForm />} />
         </Route>
+        <Route path="/profile" >
+            <Route index element={<Profile/>} />
+        </Route>
         <Route element={<Authorized token={token} />}>
-          {/* Add Routes here */}
         </Route>
       </Routes>
     </>

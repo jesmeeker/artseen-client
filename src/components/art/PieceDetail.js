@@ -20,7 +20,7 @@ export const PieceDetail = ({ token }) => {
                     </article>
                 </div>
                 <div class="tile is-parent is-8">
-                    <article class="tile is-child box">
+                    <article class="tile is-child ">
                         <p className="title" >title: {piece.title}</p>
                         <p className="title">subtitle: {piece.subtitle}</p>
 
@@ -28,6 +28,7 @@ export const PieceDetail = ({ token }) => {
                         <p className="title">art type: {piece.arttype?.label} {piece.media?.label}</p>
                         <p className="title">size: {piece.length}'x{piece.width}'x{piece.height}'</p>
                         <p className="title">price: ${piece.price}</p>
+                        <p className="title">about: {piece.about}</p>
                     </article>
                 </div>
             </div>

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { addNewPiece, getSinglePiece, updatePiece } from "../../managers/Art"
 import { useNavigate, useParams } from "react-router-dom"
 
-export const AddPieceForm = ({ token }) => {
+export const AddPieceForm = ({ }) => {
     const navigate = useNavigate()
     const [selectedSubTypes, setSelectedSubTypes] = useState([])
     const [piece, setNewPiece] = useState({
@@ -348,8 +348,15 @@ export const AddPieceForm = ({ token }) => {
                             addNewPiece(copy).then(() => navigate("/portfolio"))
                             }
                         }
-                        className="button is-rounded is-link is-small"
+                        className="button is-rounded is-link is-small" style={ {margin: "1rem"}}
                     >Submit
+                    </button>
+                    <button type="publish"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            navigate("/portfolio")}}
+                    className="button is-rounded is-danger is-light is-small" style={ {margin: "1rem"} }
+                    >Cancel
                     </button>
                 </fieldset>
             </div>
