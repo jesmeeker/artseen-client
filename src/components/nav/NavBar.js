@@ -34,11 +34,11 @@ export const NavBar = ({ token, setToken }) => {
                 ;
             }
 
-            function closeAllModals() {
-                (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-                    closeModal($modal);
-                });
-            }
+            // function closeAllModals() {
+            //     (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            //         closeModal($modal);
+            //     });
+            // }
 
             // Add a click event on buttons to open a specific modal
             (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
@@ -59,15 +59,6 @@ export const NavBar = ({ token, setToken }) => {
                     
                 });
             });
-
-            // // Add a keyboard event to close all modals
-            // document.addEventListener('keydown', (event) => {
-            //     const e = event || window.event;
-
-            //     if (e.keyCode === 27) { // Escape key
-            //         closeAllModals();
-            //     }
-            // });
         });
     }, [])
     /*
@@ -143,8 +134,8 @@ export const NavBar = ({ token, setToken }) => {
                                     <button
                                         className="button is-rounded"
                                         onClick={() => {
-                                            setToken("");
-                                            navigate("/login");
+                                            setToken("", "");
+                                            navigate("*");
                                         }}
                                     >
                                         Logout
@@ -166,7 +157,7 @@ export const NavBar = ({ token, setToken }) => {
             </div>
             <div id="modal-js-example" class="modal">
                 <div class="modal-background"></div>
-                        <Register setRegisterState={setRegisterState} registerState={registerState}/>
+                        <Register setRegisterState={setRegisterState} registerState={registerState} token={token}/>
                 <button class="modal-close is-large" aria-label="close"></button>
             </div>
         </nav>

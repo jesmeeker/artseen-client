@@ -8,8 +8,9 @@ import { NavBar } from "./components/nav/NavBar"
 export const ArtSeen = () => {
     const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
 
-    const setToken = (newToken) => {
+    const setToken = (newToken, permissions) => {
         localStorage.setItem('artseen_token', newToken)
+        localStorage.setItem('permissions', permissions)
         setTokenState(newToken)
     }
 

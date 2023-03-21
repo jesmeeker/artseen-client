@@ -3,7 +3,7 @@ import { ArtistRegister } from "./ArtistRegister"
 import { ManagerRegister } from "./ManagerRegister"
 import { ViewerRegister } from "./ViewerRegister"
 
-export const Register = ({ setToken, registerState, setRegisterState }) => {
+export const Register = ({ setToken, registerState, setRegisterState, token }) => {
     const [selectedOption, setSelectedOption] = useState()
 
     const handleSubmit = (e) => {

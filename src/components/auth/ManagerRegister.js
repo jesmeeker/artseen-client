@@ -5,10 +5,10 @@ import { registerUser } from "../../managers/AuthManager"
 import { getCities } from "../../managers/Cities"
 import { getGalleries, getGalleriesByCityId } from "../../managers/Galleries"
 
-export const ManagerRegister = ({ setRegisterState}) => {
+export const ManagerRegister = ({ setRegisterState, setTokenState, setToken })  => {
     const [cities, setCities] = useState([])
     const [galleries, setGalleries] = useState([])
-    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+    // const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
 
     const [filteredGalleries, setFilteredGalleries] = useState([])
     const firstName = useRef()
@@ -29,10 +29,10 @@ export const ManagerRegister = ({ setRegisterState}) => {
         setFilteredGalleries(galleries)
     }, [])
 
-    const setToken = (newToken) => {
-        localStorage.setItem('artseen_token', newToken)
-        setTokenState(newToken)
-    }
+    // const setToken = (newToken) => {
+    //     localStorage.setItem('artseen_token', newToken)
+    //     setTokenState(newToken)
+    // }
 
     const closeModal = ($el) => {
         $el.classList.remove('is-active')
@@ -61,8 +61,7 @@ export const ManagerRegister = ({ setRegisterState}) => {
             }
             registerUser("manager", newUser).then((res) => {
                 if ("token" in res) {
-                    setToken(res.token)
-                    localStorage.setItem("permissions", res.permissions)
+                    setToken(res.token, res.permissions)
                     closeAllModals()
                     navigate("/")
                 }

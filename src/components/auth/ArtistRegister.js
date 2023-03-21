@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
 import { getCities } from "../../managers/Cities"
 
-export const ArtistRegister = ({ setRegisterState }) => {
+export const ArtistRegister = ({ setRegisterState, setTokenState, setToken }) => {
     const [cities, setCities] = useState([])
-    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
-
+    // const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
@@ -26,10 +25,10 @@ export const ArtistRegister = ({ setRegisterState }) => {
         getCities().then(data => setCities(data))
     }, [])
 
-    const setToken = (newToken) => {
-        localStorage.setItem('artseen_token', newToken)
-        setTokenState(newToken)
-    }
+    // const setToken = (newToken) => {
+    //     localStorage.setItem('artseen_token', newToken)
+    //     setTokenState(newToken)
+    // }
 
     const closeModal = ($el) => {
         $el.classList.remove('is-active')
@@ -59,8 +58,7 @@ export const ArtistRegister = ({ setRegisterState }) => {
             }
             registerUser("artist", newUser).then((res) => {
                 if ("token" in res) {
-                    setToken(res.token)
-                    localStorage.setItem("permissions", res.permissions)
+                    setToken(res.token, res.permissions)
                     closeAllModals()
                     navigate("/")
                 }

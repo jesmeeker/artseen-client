@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
 import { getCities } from "../../managers/Cities"
 
-export const ViewerRegister = ({ setRegisterState}) => {
+export const ViewerRegister = ({ setRegisterState, setTokenState, setToken })  => {
     const [cities, setCities] = useState([])
-    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+    // const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
 
     const firstName = useRef()
     const lastName = useRef()
@@ -23,10 +23,10 @@ export const ViewerRegister = ({ setRegisterState}) => {
         getCities().then(data => setCities(data))
     }, [])
 
-    const setToken = (newToken) => {
-        localStorage.setItem('artseen_token', newToken)
-        setTokenState(newToken)
-    }
+    // const setToken = (newToken) => {
+    //     localStorage.setItem('artseen_token', newToken)
+    //     setTokenState(newToken)
+    // }
 
     const closeModal = ($el) => {
         $el.classList.remove('is-active')
@@ -58,8 +58,7 @@ export const ViewerRegister = ({ setRegisterState}) => {
                 if ("token" in res) {
                     //sets registered user into local storage and sets Token state to the embedded token object returned from the api
                     //   setToken(res.token)
-                    setToken(res.token)
-                    localStorage.setItem("permissions", res.permissions)
+                    setToken(res.token, res.permissions)
                     closeAllModals()
                     navigate("/")
                 }
