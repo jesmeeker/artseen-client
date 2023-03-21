@@ -5,7 +5,7 @@ import { registerUser } from "../../managers/AuthManager"
 import { getCities } from "../../managers/Cities"
 import { getGalleries, getGalleriesByCityId } from "../../managers/Galleries"
 
-export const ManagerRegister = ({ setRegisterState}) => {
+export const ManagerRegister = ({ setRegisterState })  => {
     const [cities, setCities] = useState([])
     const [galleries, setGalleries] = useState([])
     const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
@@ -29,8 +29,9 @@ export const ManagerRegister = ({ setRegisterState}) => {
         setFilteredGalleries(galleries)
     }, [])
 
-    const setToken = (newToken) => {
+    const setToken = (newToken, permissions) => {
         localStorage.setItem('artseen_token', newToken)
+        localStorage.setItem('permissions', permissions)
         setTokenState(newToken)
     }
 
@@ -61,7 +62,7 @@ export const ManagerRegister = ({ setRegisterState}) => {
             }
             registerUser("manager", newUser).then((res) => {
                 if ("token" in res) {
-                    setToken(res.token)
+                    setToken(res.token, res.permissions)
                     closeAllModals()
                     navigate("/")
                 }

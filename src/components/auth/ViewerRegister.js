@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
 import { getCities } from "../../managers/Cities"
 
-export const ViewerRegister = ({ setRegisterState}) => {
+export const ViewerRegister = ({ setRegisterState })  => {
     const [cities, setCities] = useState([])
     const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
 
@@ -23,8 +23,9 @@ export const ViewerRegister = ({ setRegisterState}) => {
         getCities().then(data => setCities(data))
     }, [])
 
-    const setToken = (newToken) => {
+    const setToken = (newToken, permissions) => {
         localStorage.setItem('artseen_token', newToken)
+        localStorage.setItem('permissions', permissions)
         setTokenState(newToken)
     }
 
@@ -58,7 +59,7 @@ export const ViewerRegister = ({ setRegisterState}) => {
                 if ("token" in res) {
                     //sets registered user into local storage and sets Token state to the embedded token object returned from the api
                     //   setToken(res.token)
-                    setToken(res.token)
+                    setToken(res.token, res.permissions)
                     closeAllModals()
                     navigate("/")
                 }

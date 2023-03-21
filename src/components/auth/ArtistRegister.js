@@ -7,7 +7,7 @@ import { getCities } from "../../managers/Cities"
 export const ArtistRegister = ({ setRegisterState }) => {
     const [cities, setCities] = useState([])
     const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
-
+    
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
@@ -26,8 +26,9 @@ export const ArtistRegister = ({ setRegisterState }) => {
         getCities().then(data => setCities(data))
     }, [])
 
-    const setToken = (newToken) => {
+    const setToken = (newToken, permissions) => {
         localStorage.setItem('artseen_token', newToken)
+        localStorage.setItem('permissions', permissions)
         setTokenState(newToken)
     }
 
@@ -59,7 +60,7 @@ export const ArtistRegister = ({ setRegisterState }) => {
             }
             registerUser("artist", newUser).then((res) => {
                 if ("token" in res) {
-                    setToken(res.token)
+                    setToken(res.token, res.permissions)
                     closeAllModals()
                     navigate("/")
                 }

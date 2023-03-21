@@ -22,8 +22,7 @@ export const Login = ({ token, setToken }) => {
 
                 if ("valid" in res && res.valid && "token" in res) {
                     
-                    setToken(res.token)
-                    // localStorage.setItem("is_Staff", res.staff)
+                    setToken(res.token, res.permissions)
                     navigate("/")
                 }
                 else {
