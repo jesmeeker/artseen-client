@@ -9,6 +9,9 @@ export const NavBar = () => {
     const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
 
     const navigate = useNavigate();
+    const permissions = localStorage.getItem('permissions')
+    console.log(permissions)
+    console.log(token)
 
     const setToken = (newToken, permissions) => {
         localStorage.setItem('artseen_token', newToken)
@@ -24,18 +27,18 @@ export const NavBar = () => {
 
     useEffect(() => {
         document.addEventListener('click', () => {
-            
+
             // Functions to open and close a modal
             function openModal($el) {
                 $el.classList.add('is-active')
                 setRegisterState("register")
-                ;
+                    ;
             }
 
             function closeModal($el) {
                 $el.classList.remove('is-active')
                 setRegisterState("register")
-                ;
+                    ;
             }
 
             // function closeAllModals() {
@@ -60,7 +63,7 @@ export const NavBar = () => {
 
                 $close.addEventListener('click', () => {
                     closeModal($target)
-                    
+
                 });
             });
         });
@@ -77,6 +80,86 @@ export const NavBar = () => {
         hamburger.current.classList.toggle("is-active");
         navbar.current.classList.toggle("is-active");
     };
+
+    const menuItemsToDisplay = () => {
+        if (token != null) {
+            if (permissions === "artist") {
+                return <>
+                    <span className="padding">/</span>
+                    <Link to="/portfolio" className="navbar-item">
+                        My Portfolio
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/add" className="navbar-item">
+                        Add Piece
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/" className="navbar-item">
+                        Browse Art
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/profile" className="navbar-item">
+                        Profile
+                    </Link>
+                </>
+            }
+            else if (permissions === "viewer") {
+                return <>
+                    <span className="padding">/</span>
+                    <Link to="/favorites" className="navbar-item">
+                        My Favorite Art
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/following" className="navbar-item">
+                        Artists I Follow
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/" className="navbar-item">
+                        Browse Art
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/artists" className="navbar-item">
+                        Browse Artists
+                    </Link>
+
+                </>
+            }
+            else if (permissions === "manager") {
+                return <>
+                    <span className="padding">/</span>
+                    <Link to="/favorites" className="navbar-item">
+                        My Favorites
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/artists" className="navbar-item">
+                        Browse Artists
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/" className="navbar-item">
+                        Browse Art
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/inbox" className="navbar-item">
+                        Inbox
+                    </Link>
+                </>
+            }
+        }
+        else {
+            return <>
+                <span className="padding"></span>
+                <Link to="/artists" className="navbar-item">
+                    Browse Artists
+                </Link>
+                <span className="padding">/</span>
+                <Link to="/" className="navbar-item">
+                    Browse Art
+                </Link>
+            </>
+        }
+    }
+    
+
     return (<>
 
         <nav
@@ -105,28 +188,7 @@ export const NavBar = () => {
             <div className="navbar-menu" ref={navbar}>
                 <div className="navbar-start">
                     {
-                        token ?
-                            (<>
-                                <span className="padding">/</span>
-                                <Link to="/portfolio" className="navbar-item">
-                                    My Portfolio
-                                </Link>
-                                <span className="padding">/</span>
-                                <Link to="/add" className="navbar-item">
-                                    Add Piece
-                                </Link>
-                                <span className="padding">/</span>
-                                <Link to="/" className="navbar-item">
-                                    Browse Art
-                                </Link>
-                                <span className="padding">/</span>
-                                <Link to="/profile" className="navbar-item">
-                                    Profile
-                                </Link>
-                            </>
-                            ) : (
-                                ""
-                            )
+                        menuItemsToDisplay()
                     }
                 </div>
 
@@ -155,13 +217,14 @@ export const NavBar = () => {
                                     </>
                                 )
                             }
+
                         </div>
                     </div>
                 </div>
             </div>
             <div id="modal-js-example" class="modal">
                 <div class="modal-background"></div>
-                        <Register registerState={registerState}/>
+                <Register registerState={registerState} />
                 <button class="modal-close is-large" aria-label="close"></button>
             </div>
         </nav>
