@@ -5,8 +5,14 @@ import { Register } from "../auth/Register";
 import "./NavBar.css";
 // Creates and exports NavBar component
 // uses Props in the argument defined in Rare.js
-export const NavBar = ({ token, setToken }) => {
+export const NavBar = ({ setToken }) => {
     const [registerState, setRegisterState] = useState("register")
+    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+
+    // const setToken = (newToken) => {
+    //     localStorage.setItem('artseen_token', newToken)
+    //     setTokenState(newToken)
+    // }
 
     //defines navigate variable to use useNavigate hook
     const navigate = useNavigate();
@@ -148,7 +154,7 @@ export const NavBar = ({ token, setToken }) => {
                                     </button>
                                 ) : (
                                     <>
-                                        <button className="js-modal-trigger button is-rounded is-info" data-target="modal-js-example">
+                                        <button className="js-modal-trigger button is-rounded is-link" data-target="modal-js-example">
                                             Register
                                         </button>
                                         <Link to="/login" className="button is-rounded">

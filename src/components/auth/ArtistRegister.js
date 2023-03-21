@@ -250,16 +250,17 @@ export const ArtistRegister = ({ setRegisterState }) => {
                         </select>
                     </div>
                     <div className="field is-grouped">
+                    <div className="modal-cancel">
+                        <button className="button is-link is-danger is-rounded">
+                                Cancel
+                            </button>
+                        </div>
                         <div className="control">
                             <button className="button is-link is-rounded" onClick={handleRegister}>
                                 Submit
                             </button>
                         </div>
-                        <div className="modal-cancel">
-                        <button className="button is-link is-danger is-rounded">
-                                Cancel
-                            </button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
