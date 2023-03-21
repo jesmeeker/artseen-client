@@ -1,5 +1,3 @@
-
-
 import { useState } from "react"
 import { ApplicationViews } from "./views/ApplicationViews"
 import { NavBar } from "./components/nav/NavBar"
@@ -15,7 +13,7 @@ export const ArtSeen = () => {
     }
 
     return <>
-        <NavBar token={token} setToken={setToken} />
+        <NavBar token={token} setTokenState={setTokenState}/>
         <ApplicationViews token={token} setToken={setToken} />
     </>
 }

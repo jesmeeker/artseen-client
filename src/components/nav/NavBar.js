@@ -4,20 +4,24 @@ import { ArtistRegister } from "../auth/ArtistRegister";
 import { Register } from "../auth/Register";
 import "./NavBar.css";
 
-export const NavBar = ({ token, setToken }) => {
+export const NavBar = () => {
     const [registerState, setRegisterState] = useState("register")
-    // const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+
     const navigate = useNavigate();
 
-    // const setToken = (newToken) => {
-    //     localStorage.setItem('artseen_token', newToken)
-    //     setTokenState(newToken)
-    // }
+    const setToken = (newToken, permissions) => {
+        localStorage.setItem('artseen_token', newToken)
+        localStorage.setItem('permissions', permissions)
+        setTokenState(newToken)
+    }
 
     useEffect(() => {
+        setTokenState(localStorage.getItem('artseen_token'))
+    }, [setToken])
 
-    })
     const navbar = useRef();
+
     useEffect(() => {
         document.addEventListener('click', () => {
             
@@ -157,7 +161,7 @@ export const NavBar = ({ token, setToken }) => {
             </div>
             <div id="modal-js-example" class="modal">
                 <div class="modal-background"></div>
-                        <Register setRegisterState={setRegisterState} registerState={registerState} token={token}/>
+                        <Register registerState={registerState}/>
                 <button class="modal-close is-large" aria-label="close"></button>
             </div>
         </nav>
