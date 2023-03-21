@@ -61,32 +61,9 @@ export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMed
           }
       }, [art, selectedArtType, selectedSubType, selectedMedium])
 
-    //   const handleKeypress = (e) => {
-    //     if (e.keyCode === 13) {
-    //       handleSubmit()
-    //     }
-    //   }
-    
-    //   const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     getSearchedArt(`${searchTerms}`).then((data) => setFilteredArt(data))
-    //     setSearchTerms("")
-    //     document.getElementById("search").value = ""
-    //   }
-
     return (
         <>  
-            {/* <input
-                        type="textfield"
-                        placeholder={searchTerms}
-                        id="search"
-                        onChange={(e) => setSearchTerms(e.target.value)}
-                        onKeyUp={handleKeypress}
-                    ></input>
-                    <button className="button is-small is-link is-rounded" type="submit" onClick={handleSubmit}>
-                        Go
-                    </button>
-                    <button className="button is-small is-rounded" onClick={() => setFilteredArt(art)}>View All</button> */}
+            
             <div className="art__container">
                 {filteredArt.map((art_piece) => (
                     <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"}/>
