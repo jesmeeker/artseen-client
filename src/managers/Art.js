@@ -57,3 +57,15 @@ export const getCurrentUserPieces = () => {
       },
     })
   }
+
+  export const getSearchedArt = (searchTerm) => {
+    return fetch(`http://localhost:8000/art?search=${searchTerm}`,
+      {
+        headers: {
+          "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        }
+      })
+      .then(res => res.json())
+    
+  }
+  
