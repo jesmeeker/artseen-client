@@ -57,14 +57,14 @@ export const NavBar = ({ token, setToken }) => {
                 });
             });
 
-            // Add a keyboard event to close all modals
-            document.addEventListener('keydown', (event) => {
-                const e = event || window.event;
+            // // Add a keyboard event to close all modals
+            // document.addEventListener('keydown', (event) => {
+            //     const e = event || window.event;
 
-                if (e.keyCode === 27) { // Escape key
-                    closeAllModals();
-                }
-            });
+            //     if (e.keyCode === 27) { // Escape key
+            //         closeAllModals();
+            //     }
+            // });
         });
     }, [])
     /*
@@ -88,7 +88,6 @@ export const NavBar = ({ token, setToken }) => {
         >
             <div className="navbar-brand">
                 <a className="navbar-item" href="/">
-                    {/* <img src={Logo} height="3rem" alt="Rare Logo" />{" "} */}
                     <h1 class="title is-3" className="rareHeader">ArtSeen</h1>
                 </a>
                 <a

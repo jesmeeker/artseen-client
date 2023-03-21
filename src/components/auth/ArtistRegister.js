@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
 import { getCities } from "../../managers/Cities"
 
-export const ArtistRegister = ({ setToken, setRegisterState }) => {
+export const ArtistRegister = ({ setRegisterState }) => {
     const [cities, setCities] = useState([])
+    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
@@ -24,11 +26,25 @@ export const ArtistRegister = ({ setToken, setRegisterState }) => {
         getCities().then(data => setCities(data))
     }, [])
 
+    const setToken = (newToken) => {
+        localStorage.setItem('artseen_token', newToken)
+        setTokenState(newToken)
+    }
+
+    const closeModal = ($el) => {
+        $el.classList.remove('is-active')
+        ;
+    }
+    const closeAllModals = () => {
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+        });
+    }
+
     const handleRegister = (e) => {
         e.preventDefault()
-        //confirms password and verifyPassword are the same value and data type
         if (password.current.value === verifyPassword.current.value) {
-            //initializes newUser to meet the requirements of the User class for POST request
+
             const newUser = {
                 username: username.current.value,
                 first_name: firstName.current.value,
@@ -41,18 +57,14 @@ export const ArtistRegister = ({ setToken, setRegisterState }) => {
                 phone: phone.current.value,
                 website: website.current.value,
             }
-            //POSTs the user to the Register table
-            registerUser(newUser).then((res) => {
-                //Tests both a javascript string "valid" and the property "valid" on the response. Does the register table add self.valid: "valid" property? Does it also add self.token to return the required keys/values for setToken?
+            registerUser("artist", newUser).then((res) => {
                 if ("token" in res) {
-                    //sets registered user into local storage and sets Token state to the embedded token object returned from the api
-                    //   setToken(res.token)
                     setToken(res.token)
+                    closeAllModals()
                     navigate("/")
                 }
             })
         } else {
-            //renders a modal, I assume?
             passwordDialog.current.showModal()
         }
     }

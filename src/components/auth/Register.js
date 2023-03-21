@@ -3,7 +3,7 @@ import { ArtistRegister } from "./ArtistRegister"
 import { ManagerRegister } from "./ManagerRegister"
 import { ViewerRegister } from "./ViewerRegister"
 
-export const Register = ({ registerState, setRegisterState }) => {
+export const Register = ({ setToken, registerState, setRegisterState }) => {
     const [selectedOption, setSelectedOption] = useState()
 
     const handleSubmit = (e) => {
@@ -77,15 +77,15 @@ export const Register = ({ registerState, setRegisterState }) => {
 
         else if ((registerState === "artist")) {
             return <>
-                <ArtistRegister setRegisterState={setRegisterState} />
+                <ArtistRegister setToken={setToken} setRegisterState={setRegisterState} />
             </>
         } else if ((registerState === "viewer")) {
             return <>
-                <ViewerRegister setRegisterState={setRegisterState} />
+                <ViewerRegister setToken={setToken} setRegisterState={setRegisterState} />
             </>
         } else if ((registerState === "manager")) {
             return <>
-                <ManagerRegister setRegisterState={setRegisterState} />
+                <ManagerRegister setToken={setToken} setRegisterState={setRegisterState} />
             </>
         }
     }

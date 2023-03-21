@@ -4,17 +4,16 @@ import { useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
 import { getCities } from "../../managers/Cities"
 
-export const ViewerRegister = ({ setToken , setRegisterState}) => {
+export const ViewerRegister = ({ setRegisterState}) => {
     const [cities, setCities] = useState([])
+    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
     const username = useRef()
-    const profileImage = useRef()
     const city = useRef()
     const phone = useRef()
-    const website = useRef()
-    const bio = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
@@ -23,6 +22,21 @@ export const ViewerRegister = ({ setToken , setRegisterState}) => {
     useEffect(() => {
         getCities().then(data => setCities(data))
     }, [])
+
+    const setToken = (newToken) => {
+        localStorage.setItem('artseen_token', newToken)
+        setTokenState(newToken)
+    }
+
+    const closeModal = ($el) => {
+        $el.classList.remove('is-active')
+        ;
+    }
+    const closeAllModals = () => {
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+        });
+    }
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -35,19 +49,17 @@ export const ViewerRegister = ({ setToken , setRegisterState}) => {
                 last_name: lastName.current.value,
                 email: email.current.value,
                 password: password.current.value,
-                bio: bio.current.value,
-                image_url: profileImage.current.value,
                 city_id: city.current.value,
-                phone: phone.current.value,
-                website: website.current.value,
+                phone: phone.current.value
             }
             //POSTs the user to the Register table
-            registerUser(newUser).then((res) => {
+            registerUser("viewer", newUser).then((res) => {
                 //Tests both a javascript string "valid" and the property "valid" on the response. Does the register table add self.valid: "valid" property? Does it also add self.token to return the required keys/values for setToken?
                 if ("token" in res) {
                     //sets registered user into local storage and sets Token state to the embedded token object returned from the api
                     //   setToken(res.token)
                     setToken(res.token)
+                    closeAllModals()
                     navigate("/")
                 }
             })

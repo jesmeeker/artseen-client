@@ -60,3 +60,9 @@ fieldset {
     bottom: -2rem;
 }
 
+.register__input, .register__select .register__textarea {
+    background-color: transparent;
+    border: gray;
+    width: fit-content;
+    height: auto
+}

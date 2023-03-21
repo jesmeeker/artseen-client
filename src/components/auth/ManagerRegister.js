@@ -3,18 +3,21 @@ import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
 import { getCities } from "../../managers/Cities"
+import { getGalleries, getGalleriesByCityId } from "../../managers/Galleries"
 
-export const ManagerRegister = ({ setToken , setRegisterState}) => {
+export const ManagerRegister = ({ setRegisterState}) => {
     const [cities, setCities] = useState([])
+    const [galleries, setGalleries] = useState([])
+    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+
+    const [filteredGalleries, setFilteredGalleries] = useState([])
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
     const username = useRef()
-    const profileImage = useRef()
     const city = useRef()
+    const gallery = useRef()
     const phone = useRef()
-    const website = useRef()
-    const bio = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
@@ -22,7 +25,24 @@ export const ManagerRegister = ({ setToken , setRegisterState}) => {
 
     useEffect(() => {
         getCities().then(data => setCities(data))
+        getGalleries().then(data => setGalleries(data))
+        setFilteredGalleries(galleries)
     }, [])
+
+    const setToken = (newToken) => {
+        localStorage.setItem('artseen_token', newToken)
+        setTokenState(newToken)
+    }
+
+    const closeModal = ($el) => {
+        $el.classList.remove('is-active')
+        ;
+    }
+    const closeAllModals = () => {
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+        });
+    }
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -35,24 +55,18 @@ export const ManagerRegister = ({ setToken , setRegisterState}) => {
                 last_name: lastName.current.value,
                 email: email.current.value,
                 password: password.current.value,
-                bio: bio.current.value,
-                image_url: profileImage.current.value,
+                gallery_id: gallery.current.value,
                 city_id: city.current.value,
-                phone: phone.current.value,
-                website: website.current.value,
+                phone: phone.current.value
             }
-            //POSTs the user to the Register table
-            registerUser(newUser).then((res) => {
-                //Tests both a javascript string "valid" and the property "valid" on the response. Does the register table add self.valid: "valid" property? Does it also add self.token to return the required keys/values for setToken?
+            registerUser("manager", newUser).then((res) => {
                 if ("token" in res) {
-                    //sets registered user into local storage and sets Token state to the embedded token object returned from the api
-                    //   setToken(res.token)
                     setToken(res.token)
+                    closeAllModals()
                     navigate("/")
                 }
             })
         } else {
-            //renders a modal, I assume?
             passwordDialog.current.showModal()
         }
     }
@@ -173,61 +187,17 @@ export const ManagerRegister = ({ setToken , setRegisterState}) => {
                         </div>
                     </div>
 
-                    <div className="field">
-                        <label className="label">Bio</label>
-                        <div className="control">
-                            <textarea
-                                className="textarea"
-                                placeholder="Tell us about yourself..."
-                                ref={bio}
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    <div className="field-body">
-                        <div className="field-body">
-                            <label className="label" width>Profile Image</label>
-                        </div>
-                        <div className="field-body">
-                            <label className="label">Website</label>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <div className="control is-expanded">
-                            <div className="field-body">
-                                <div className="field">
-                                    <p className="control is-expanded">
-                                        <input
-                                            className="input"
-                                            type="text"
-                                            placeholder="Profile Image URL"
-                                            ref={profileImage}
-                                        />
-                                    </p>
-                                </div>
-
-                                <div className="field">
-                                    <p className="control is-expanded">
-                                        <input
-                                            className="input"
-                                            type="text"
-                                            placeholder="Website URL"
-                                            ref={website}
-                                        />
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div className="form-group">
                         <label className="label">Primary City</label>
                         <select
                             name="cityId"
-                            className="form-control"
+                            className="select subtitle"
                             ref={city}
+                            onChange={(event) => {
+                                getGalleriesByCityId(event.target.value).then((data) => setFilteredGalleries(data))
+                            }}
                         >
-                            <option value="0">Category Select</option>
+                            <option value="0">City Select</option>
                             {cities.map(city => (
                                 <option
                                     key={`city--${city.id}`}
@@ -237,6 +207,24 @@ export const ManagerRegister = ({ setToken , setRegisterState}) => {
                             ))}
                         </select>
                     </div>
+                    <div className="form-group">
+                        <label className="label">Affiliated Gallery</label>
+                        <select
+                            name="galleryId"
+                            className="select subtitle register__select register__input"
+                            ref={gallery}
+                        >
+                            <option value="0">Gallery Select</option>
+                            {filteredGalleries.map(gallery => (
+                                <option
+                                    key={`city--${gallery.id}`}
+                                    value={gallery.id}>
+                                    {gallery.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
                     <div className="field is-grouped">
                         <div className="control">
                             <button className="button is-link is-rounded" onClick={handleRegister}>
@@ -249,7 +237,6 @@ export const ManagerRegister = ({ setToken , setRegisterState}) => {
                             </button>
                         </div>
                     </div>
-                </div>
             </div>
             </div>
             )
