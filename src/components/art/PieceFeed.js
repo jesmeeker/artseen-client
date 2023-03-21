@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { getAllArt, getSearchedArt } from "../../managers/Art"
+import { getAllArt } from "../../managers/Art"
 import { Art } from "./Art"
 
 export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMedium }) => {
     const [art, setArt] = useState([])
     const [filteredArt, setFilteredArt] = useState([])
-    const [searchTerms, setSearchTerms] = useState("Search by Keyword")
-
-    const navigate = useNavigate()
 
     useEffect(() => {
         getAllArt().then((data) => {
@@ -19,54 +15,62 @@ export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMed
 
     useEffect(() => {
         if (selectedArtType === 0 && selectedSubType === 0 && selectedMedium === 0) {
-          setFilteredArt(art)
-        } 
+            setFilteredArt(art)
+        }
         else if (selectedArtType !== 0 && selectedSubType === 0 && selectedMedium === 0) {
-          const filteredCopy = art.filter(
-            (a) => a.arttype.id === parseInt(selectedArtType)
-          )
-          setFilteredArt(filteredCopy)
-        } 
-        else if (selectedArtType === 0 && selectedSubType !== 0 && selectedMedium === 0) {
-            const filteredCopy = art.filter(a => a.subtypes.some(sub => sub.id === parseInt(selectedSubType)))
-          setFilteredArt(filteredCopy)
-        } 
-        else if (selectedArtType === 0 && selectedSubType === 0 && selectedMedium !== 0) {
             const filteredCopy = art.filter(
-              (a) => a.media?.id === parseInt(selectedMedium)
+                (a) => a.arttype.id === parseInt(selectedArtType)
             )
             setFilteredArt(filteredCopy)
-          } 
+        }
+        else if (selectedArtType === 0 && selectedSubType !== 0 && selectedMedium === 0) {
+            const filteredCopy = art.filter(a => a.subtypes.some(sub => sub.id === parseInt(selectedSubType)))
+            setFilteredArt(filteredCopy)
+        }
+        else if (selectedArtType === 0 && selectedSubType === 0 && selectedMedium !== 0) {
+            const filteredCopy = art.filter(
+                (a) => a.media?.id === parseInt(selectedMedium)
+            )
+            setFilteredArt(filteredCopy)
+        }
         else if (selectedArtType !== 0 && selectedSubType !== 0 && selectedMedium === 0) {
-          const filteredCopy = art.filter(
-            (a) =>
-              (a.subtypes.filter(subtype => subtype.id === parseInt(selectedSubType)).length > 0 &&
-              a.arttype.id === parseInt(selectedArtType))
-          )
-          setFilteredArt(filteredCopy)
+            const filteredCopy = art.filter(
+                (a) =>
+                (a.subtypes.filter(subtype => subtype.id === parseInt(selectedSubType)).length > 0 &&
+                    a.arttype.id === parseInt(selectedArtType))
+            )
+            setFilteredArt(filteredCopy)
         }
         else if (selectedArtType !== 0 && selectedSubType === 0 && selectedMedium !== 0) {
             const filteredCopy = art.filter(
-              (a) =>
-                a.media?.id === parseInt(selectedMedium) && a.arttype?.id === parseInt(selectedArtType)
+                (a) =>
+                    a.media?.id === parseInt(selectedMedium) && a.arttype?.id === parseInt(selectedArtType)
             )
             setFilteredArt(filteredCopy)
-          }
+        }
         else if (selectedArtType === 0 && selectedSubType !== 0 && selectedMedium !== 0) {
             const filteredCopy = art.filter(
-              (a) =>
-                a.media?.id === parseInt(selectedMedium) && a.subtypes.filter(subtype => subtype.id === parseInt(selectedSubType)).length > 0
+                (a) =>
+                    a.media?.id === parseInt(selectedMedium) && a.subtypes.filter(subtype => subtype.id === parseInt(selectedSubType)).length > 0
             )
             setFilteredArt(filteredCopy)
+<<<<<<< HEAD
           }
       }, [art, selectedArtType, selectedSubType, selectedMedium])
 
     return (
         <>  
             
+=======
+        }
+    }, [art, selectedArtType, selectedSubType, selectedMedium])
+
+    return (
+        <>
+>>>>>>> 8c974a6ef22ffff9df6848d38757bb9312d39727
             <div className="art__container">
                 {filteredArt.map((art_piece) => (
-                    <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"}/>
+                    <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"} />
                 ))}
             </div>
         </>

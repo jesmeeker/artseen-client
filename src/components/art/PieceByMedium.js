@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getAllArtTypes } from "../../managers/arttypes";
 import { getAllMediums } from "../../managers/mediums";
 import "./art.css"
 
