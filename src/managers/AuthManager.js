@@ -18,8 +18,8 @@ export const loginUser = (user) => {
   // Function that is being imported in "./auth/register"
   // takes a single parameter of newUser
   // POST http request to register that will send new user resource to server 
-  export const registerUser = (newUser) => {
-    return fetch("http://localhost:8000/register", {
+  export const registerUser = (type, newUser) => {
+    return fetch(`http://localhost:8000/register?${type}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
