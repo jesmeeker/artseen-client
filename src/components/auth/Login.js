@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "../../managers/AuthManager"
 
 //Login function handles initializing user object, posting user to login table, and conditionally rendering JSX
-export const Login = ({ setToken }) => {
+export const Login = ({ token, setToken }) => {
     //useRef hook is a state variable that 1. persists between renders and 2. can change but doesn't instigate re-renders.
     const username = useRef()
     const password = useRef()
@@ -41,14 +41,14 @@ export const Login = ({ setToken }) => {
                 <p className="subtitle">Please sign in</p>
 
                 <div className="field">
-                    <label className="label">Username</label>
+                    <label className="subtitle">Username</label>
                     <div className="control">
                         <input className="input" type="text" ref={username} />
                     </div>
                 </div>
 
                 <div className="field">
-                    <label className="label">Password</label>
+                    <label className="subtitle">Password</label>
                     <div className="control">
                         <input className="input" type="password" ref={password} />
                     </div>
