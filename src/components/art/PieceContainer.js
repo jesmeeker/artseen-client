@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getSearchedArt } from "../../managers/Art"
 import { PieceByArtType } from "./PieceByArtType"
 import { PieceByMedium } from "./PieceByMedium"
 import { PieceBySubType } from "./PieceBySubType"
@@ -13,19 +12,6 @@ export const PieceContainer = () => {
     const [selectedMedium, setSelectedMedium] = useState(0)
 
     const navigate = useNavigate()
-
-    // const handleKeypress = (e) => {
-    //     if (e.keyCode === 13) {
-    //         handleSubmit()
-    //     }
-    // }
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     getSearchedArt(`${searchTerms}`).then((data) => setFilteredArt(data))
-    //     setSearchTerms("Search by Title, Artist, Medium, Art Type")
-    //     document.getElementById("search").value = ""
-    // }
 
     return <>
         <div className="container">
