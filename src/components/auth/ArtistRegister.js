@@ -60,6 +60,7 @@ export const ArtistRegister = ({ setRegisterState }) => {
             registerUser("artist", newUser).then((res) => {
                 if ("token" in res) {
                     setToken(res.token)
+                    localStorage.setItem("permissions", res.permissions)
                     closeAllModals()
                     navigate("/")
                 }

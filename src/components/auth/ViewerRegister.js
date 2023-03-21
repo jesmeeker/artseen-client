@@ -59,6 +59,7 @@ export const ViewerRegister = ({ setRegisterState}) => {
                     //sets registered user into local storage and sets Token state to the embedded token object returned from the api
                     //   setToken(res.token)
                     setToken(res.token)
+                    localStorage.setItem("permissions", res.permissions)
                     closeAllModals()
                     navigate("/")
                 }
