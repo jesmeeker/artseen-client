@@ -94,7 +94,7 @@ export const NavBar = () => {
                         Add Piece
                     </Link>
                     <span className="padding">/</span>
-                    <Link to="/" className="navbar-item">
+                    <Link to="/art" className="navbar-item">
                         Browse Art
                     </Link>
                     <span className="padding">/</span>
@@ -114,7 +114,7 @@ export const NavBar = () => {
                         Artists I Follow
                     </Link>
                     <span className="padding">/</span>
-                    <Link to="/" className="navbar-item">
+                    <Link to="/art" className="navbar-item">
                         Browse Art
                     </Link>
                     <span className="padding">/</span>
@@ -135,7 +135,7 @@ export const NavBar = () => {
                         Browse Artists
                     </Link>
                     <span className="padding">/</span>
-                    <Link to="/" className="navbar-item">
+                    <Link to="/art" className="navbar-item">
                         Browse Art
                     </Link>
                     <span className="padding">/</span>
@@ -152,7 +152,7 @@ export const NavBar = () => {
                     Browse Artists
                 </Link>
                 <span className="padding">/</span>
-                <Link to="/" className="navbar-item">
+                <Link to="/art" className="navbar-item">
                     Browse Art
                 </Link>
             </>

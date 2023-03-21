@@ -28,6 +28,7 @@ import { Authorized } from "./Authorized"
 import { AddPieceForm, PieceForms } from "../components/art/AddPieceForm"
 import { EditPieceForm } from "../components/art/EditPieceForm"
 import { Profile } from "../components/artists/Profile"
+import { PieceContainer } from "../components/art/PieceContainer"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -36,12 +37,12 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route path="/">
-          <Route index element={<PieceFeed token={token} />} />
+          <Route index element={<PieceContainer token={token} />} />
           <Route path="add" element={<AddPieceForm />} />
           <Route path=":pieceId/edit" element={<EditPieceForm />} />
         </Route>
-        <Route path="/piece" >
-            <Route index element={<PieceFeed/>} />
+        <Route path="/art" >
+            <Route index element={<PieceContainer/>} />
             <Route path=":pieceId" element={<PieceDetail/>} />
         </Route>
         <Route path="/portfolio" >
