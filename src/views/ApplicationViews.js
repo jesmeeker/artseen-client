@@ -1,25 +1,4 @@
-// import { AuthorizedViews } from './AuthorizedViews'
-// import { UnauthorizedViews } from './UnauthorizedView'
-
-// export const ApplicationViews = ({ setToken }) => {
-//   const isAuthenticated = () => sessionStorage.getItem("artseen_token") !== null
-//   console.log(isAuthenticated)
-//   if (!isAuthenticated()) {
-//     return <>
-//        <UnauthorizedViews />
-//     </>
-//   } else if (isAuthenticated()) {
-//     return (
-//       <>
-//         LOGGED IN
-//         <AuthorizedViews />
-//       </>
-//     )
-//   }
-// } 
-
 import { Route, Routes } from "react-router-dom"
-import { ArtFeed, PieceFeed } from "../components/art/PieceFeed"
 import { PieceDetail } from "../components/art/PieceDetail"
 import { Portfolio } from "../components/art/Portfolio"
 import { Login } from "../components/auth/Login"
