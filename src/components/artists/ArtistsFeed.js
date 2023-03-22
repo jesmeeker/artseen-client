@@ -47,7 +47,7 @@ export const ArtistFeed = () => {
             </nav>
             <div className="art__container">
                 {filteredArtists.map((artist) => (
-                    <Artist key={artist.id} artist={artist} setArtists={setArtists} setFilteredArtists={setFilteredArtists} />
+                    <Artist key={artist.id} artist={artist} setArtists={setArtists} setFilteredArtists={setFilteredArtists} setFollowedArtists={setFollowedArtists} following={following}/>
                 ))}
             </div>
         </div>

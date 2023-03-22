@@ -1,6 +1,6 @@
-import { addFollow, deleteFollow, getAllArtists, getSingleArtist } from "../../managers/Users"
+import { addFollow, deleteFollow, getAllArtists, getFollowedArtists, getSingleArtist } from "../../managers/Users"
 
-export const FollowButton = ({ artist, setArtists, setArtist, setFilteredArtists }) => {
+export const FollowButton = ({ artist, setArtists, setArtist, setFilteredArtists, setFollowedArtists, following }) => {
     return (<>
         {artist.follower
             ?
@@ -8,23 +8,47 @@ export const FollowButton = ({ artist, setArtists, setArtist, setFilteredArtists
                 onClick={() => {
                     deleteFollow(artist.id)
                         .then(() => {
-                            getAllArtists()
-                                .then((data) => {setArtists(data)
-                                setFilteredArtists(data)})
-                            getSingleArtist(artist.id)
-                                .then((data) => setArtist(data))
-                        })
+                            if (following === true) {
+                                getFollowedArtists().then((data) => {
+                                    setFollowedArtists(data)
+                                    setFilteredArtists(data)
+                                })
+                                getAllArtists().then((data) => setArtists(data))
+                                getSingleArtist(artist.id).then((data) => setArtist(data))
+                            } else {
+                                getAllArtists().then((data) => {
+                                    setArtists(data)
+                                    setFilteredArtists(data)
+                                })
+                                getSingleArtist(artist.id).then((data) => setArtist(data))
+                                getFollowedArtists().then((data) => setFollowedArtists(data))
+                            }
+                        }
+                        )
                 }}>Unfollow</button>
             :
             <button className="button is-primary is-rounded is-small"
                 onClick={() => {
                     addFollow(artist.id)
                         .then(() => {
-                            getAllArtists()
-                            .then((data) => {setArtists(data)
-                                setFilteredArtists(data)})
-                            getSingleArtist(artist.id).then((data) => setArtist(data))
-                        })
-                }}>Follow</button>
+                            if (following === true) {
+                                getFollowedArtists().then((data) => {
+                                    setFollowedArtists(data)
+                                    setFilteredArtists(data)
+                                })
+                                getAllArtists().then((data) => setArtists(data))
+                                getSingleArtist(artist.id).then((data) => setArtist(data))
+                            } else {
+                                getAllArtists().then((data) => {
+                                    setArtists(data)
+                                    setFilteredArtists(data)
+                                })
+                                getSingleArtist(artist.id).then((data) => setArtist(data))
+                                getFollowedArtists().then((data) => setFollowedArtists(data))
+                            }
+                        }
+                        )
+                }}
+            >Follow</button>
         }</>)
 }
