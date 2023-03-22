@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSinglePiece } from "../../managers/Art";
 import "./art.css";
+import { LikeButton } from "./LikeButton";
 
 export const PieceDetail = ({ token }) => {
     const { pieceId } = useParams()
@@ -17,6 +18,7 @@ export const PieceDetail = ({ token }) => {
                 <div class="tile is-parent">
                     <article class="tile is-child box">
                         <img className="_image" src={piece.image_url} alt={piece.image_url} />
+                        <LikeButton art_piece={piece} setPiece={setPiece}/>
                     </article>
                 </div>
                 <div class="tile is-parent is-8">

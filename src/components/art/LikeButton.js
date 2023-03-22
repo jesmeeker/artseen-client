@@ -1,8 +1,8 @@
-import { addLike, deleteLike, getAllArt } from "../../managers/Art"
+import { addLike, deleteLike, getAllArt, getSinglePiece } from "../../managers/Art"
 import Icon from '@mdi/react';
-import { mdiThumbUp, mdiThumbDown, mdiThumbUpOutline, mdiCircle } from '@mdi/js';
+import {mdiThumbUpOutline} from '@mdi/js';
 
-export const LikeButton = ({ art_piece, setArt }) => {
+export const LikeButton = ({ art_piece, setArt, setPiece }) => {
     return (<>
         {art_piece.user_likes ?
             (
@@ -13,6 +13,7 @@ export const LikeButton = ({ art_piece, setArt }) => {
                                 deleteLike(art_piece.id)
                                 .then(() => {
                                 getAllArt().then((data) => setArt(data))
+                                getSinglePiece(art_piece.id).then((data) => setPiece(data))
                                 }
                                 )
                             }>
@@ -33,6 +34,7 @@ export const LikeButton = ({ art_piece, setArt }) => {
                                 addLike(art_piece.id)
                                 .then(() => {
                                     getAllArt().then((data) => setArt(data))
+                                    getSinglePiece(art_piece.id).then((data) => setPiece(data))
                                     })
                             }>
                             <span class="icon is-small">

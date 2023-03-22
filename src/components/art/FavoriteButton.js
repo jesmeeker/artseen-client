@@ -16,7 +16,7 @@ export const FavoriteButton = ({ art_piece, setArt }) => {
                                 }
                                 )
                             }> <p>
-                                favorited 
+                                favorite
                                 </p>
                             <span class="icon is-small is-warning">
                                 <i class="has-text-warning">
@@ -30,7 +30,7 @@ export const FavoriteButton = ({ art_piece, setArt }) => {
             (
                 <>
                     <p class="field">
-                    <a class="button is-rounded is-small is-link" style={{ border: "none" }}
+                    <a class="button is-rounded is-small is-link is-light" style={{ border: "none" }}
                             onClick={() =>
                                 addFavorite(art_piece.id)
                                 .then(() => {

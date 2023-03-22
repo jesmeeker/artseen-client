@@ -10,6 +10,7 @@ export const PieceContainer = () => {
     const [selectedArtType, setSelectedArtType] = useState(0)
     const [selectedSubType, setSelectedSubType] = useState(0)
     const [selectedMedium, setSelectedMedium] = useState(0)
+    const [favoriteState, setFavoriteState] = useState(true)
 
     const navigate = useNavigate()
 
@@ -35,9 +36,23 @@ export const PieceContainer = () => {
 
             <nav class="level">
                 <div class="level-left" style={{}}>
-
+                    {
+                        favoriteState ? (
+                    <button className="button is-rounded is-warning"
+                        onClick={() => {
+                            setFavoriteState(!favoriteState)}}>
+                        View Favorites
+                    </button>
+                    ):
+                    (
+                    <button className="button is-rounded is-warning"
+                        onClick={() => {
+                            setFavoriteState(!favoriteState)}}>
+                        View All
+                    </button>
+                    )
+                    }
                 </div>
-
                 <div class="level-right">
                     <div class="level-item">
                         <PieceByArtType setSelectedArtType={setSelectedArtType} />
@@ -53,6 +68,7 @@ export const PieceContainer = () => {
         </div>
 
         <PieceFeed
+            favoriteState={favoriteState}
             selectedSubType={selectedSubType}
             selectedArtType={selectedArtType}
             selectedMedium={selectedMedium}
