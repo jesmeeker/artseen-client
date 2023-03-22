@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
+import { FollowButton } from "./FollowButton"
 
-export const Artist = ({ artist }) => {
+export const Artist = ({ artist, setArtists }) => {
     return (
         <>
             <div class="tile is-parent is-4">
@@ -8,10 +9,26 @@ export const Artist = ({ artist }) => {
                     <Link to={`/artists/${artist.id}`}>
                         <img className="art__image" src={artist.image_url} alt={artist.image_url} />
                     </Link>
+                    <nav className="level">
+                <div class="level-left">
+                    <div class="level-item">
                     <Link to={`/artists/${artist.id}`}>
-                    <p className="is-size-4 is-capitalized has-text-weight-bold">{artist.full_name}</p>
-                    </Link>
-                    <p className="is-size-5">{artist.city?.label}</p>
+                    <p className="is-size-5 is-capitalized has-text-weight-bold">{artist.full_name}, &nbsp;</p></Link><p className="is-size-5 is-capitalized"> {artist.city?.label}</p>
+                    <div>
+                        <p className="is-size-4">
+                            
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="level-right" style={{}}>
+                    <div class="level-item">
+                    <FollowButton artist={artist} setArtists={setArtists} />
+                    </div>
+                </div>
+            </nav>
+                    
+                    
                     <div>
                         <p className="is-size-6">
                             {artist.bio}
