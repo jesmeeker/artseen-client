@@ -28,6 +28,16 @@ export const getAllArtists = () => {
         })
         .then(res => res.json())
 }
+
+export const getFollowedArtists = () => {
+    return fetch(`http://localhost:8000/artist?followed`,
+        {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+            }
+        })
+        .then(res => res.json())
+}
 export const getSingleArtist = (id) => {
     return fetch(`http://localhost:8000/artist/${id}`,
         {

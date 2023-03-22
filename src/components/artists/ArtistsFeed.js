@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react"
-import { getAllArtists } from "../../managers/Users"
+import { getAllArtists, getFollowedArtists } from "../../managers/Users"
 import { Artist } from "./Artist"
 
 export const ArtistFeed = () => {
     const [artists, setArtists] = useState([])
+    const [followedArtists, setFollowedArtists] = useState([])
+    const [filteredArtists, setFilteredArtists] = useState([])
+    const [following, setFollowing] = useState(false)
 
     useEffect(() => {
-        getAllArtists().then((data) => setArtists(data))
+        getFollowedArtists().then((data) => setFollowedArtists(data))
+        getAllArtists().then((data) => {
+            setArtists(data)
+            setFilteredArtists(data)
+        })
     }, [])
+
     return <>
         <div className="container">
             <nav className="level">
@@ -21,12 +29,24 @@ export const ArtistFeed = () => {
                 </div>
                 <div class="level-right" style={{}}>
                     <div class="level-item">
-
+                        {following ? (<button className="button is-small is-rounded is-warning"
+                            onClick={() => {
+                                setFollowing(!following)
+                                setFilteredArtists(artists)
+                            }}>All Artists</button>)
+                            : (
+                                <button className="button is-small is-rounded is-link"
+                            onClick={() => {
+                                setFollowing(!following)
+                                setFilteredArtists(followedArtists)                               
+                            }}>Artists I Follow</button>
+                            )
+                        }
                     </div>
                 </div>
             </nav>
             <div className="art__container">
-                {artists.map((artist) => (
+                {filteredArtists.map((artist) => (
                     <Artist key={artist.id} artist={artist} setArtists={setArtists} />
                 ))}
             </div>
