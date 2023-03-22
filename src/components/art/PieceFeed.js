@@ -54,20 +54,11 @@ export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMed
                     a.media?.id === parseInt(selectedMedium) && a.subtypes.filter(subtype => subtype.id === parseInt(selectedSubType)).length > 0
             )
             setFilteredArt(filteredCopy)
-<<<<<<< HEAD
-          }
-      }, [art, selectedArtType, selectedSubType, selectedMedium])
-
-    return (
-        <>  
-            
-=======
         }
     }, [art, selectedArtType, selectedSubType, selectedMedium])
 
     return (
         <>
->>>>>>> 8c974a6ef22ffff9df6848d38757bb9312d39727
             <div className="art__container">
                 {filteredArt.map((art_piece) => (
                     <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"} />

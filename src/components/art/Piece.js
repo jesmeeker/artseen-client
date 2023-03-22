@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import "./art.css"
 
-export const Art = ({ art_piece, token }) => {
+export const Art = ({ art_piece }) => {
 
     return (
         <>
