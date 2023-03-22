@@ -102,3 +102,24 @@ export const deleteLike = (id) => {
         }
     })
 }
+  export const addFavorite = (id) => {
+    return fetch(`http://localhost:8000/art/${id}/favorite`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("artseen_token")}`,
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(id)
+    })
+    .then(res => res.json())
+}
+
+export const deleteFavorite = (id) => {
+    return fetch(`http://localhost:8000/art/${id}/unfavorite`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        }
+    })
+}
