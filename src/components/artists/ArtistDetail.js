@@ -36,15 +36,16 @@ export const ArtistDetail = ({ setArtists }) => {
                 </div>
                 <div class="level-right" style={{}}>
                     <div class="level-item">
-
+                        <FollowButton artist={artist} setArtist={setArtist} setArtists={setArtists} />
                     </div>
                 </div>
             </nav>
+            <div className="art__container">
+
             <div class="tile is-ancestor">
                 <div class="tile is-parent">
                     <article class="tile is-child">
                         <img className="image" src={artist.image_url} alt={artist.image_url} />
-                        <FollowButton artist={artist} setArtist={setArtist} setArtists={setArtists} />
                     </article>
                 </div>
                 <div class="tile is-parent is-8">
@@ -58,6 +59,7 @@ export const ArtistDetail = ({ setArtists }) => {
                         <p className="is-size-4">bio: {artist.bio}</p>
                     </article>
                 </div>
+            </div>
             </div>
             <nav className="level bottom-border">
                 <div class="level-left">
