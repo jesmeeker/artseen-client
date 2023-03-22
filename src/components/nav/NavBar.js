@@ -10,9 +10,7 @@ export const NavBar = () => {
 
     const navigate = useNavigate();
     const permissions = localStorage.getItem('permissions')
-    console.log(permissions)
-    console.log(token)
-
+    
     const setToken = (newToken, permissions) => {
         localStorage.setItem('artseen_token', newToken)
         localStorage.setItem('permissions', permissions)

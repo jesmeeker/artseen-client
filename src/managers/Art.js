@@ -81,3 +81,24 @@ export const getCurrentUserPieces = () => {
     
   }
   
+  export const addLike = (id) => {
+    return fetch(`http://localhost:8000/art/${id}/like`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("artseen_token")}`,
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(id)
+    })
+    .then(res => res.json())
+}
+
+export const deleteLike = (id) => {
+    return fetch(`http://localhost:8000/art/${id}/unlike`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        }
+    })
+}
