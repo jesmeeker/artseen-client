@@ -1,8 +1,8 @@
-import { addFavorite, addLike, deleteFavorite, deleteLike, getAllArt } from "../../managers/Art"
+import { addFavorite, addLike, deleteFavorite, deleteLike, getAllArt, getSinglePiece } from "../../managers/Art"
 import Icon from '@mdi/react';
 import {mdiStar, mdiStarOutline } from '@mdi/js';
 
-export const FavoriteButton = ({ art_piece, setArt }) => {
+export const FavoriteButton = ({ art_piece, setArt, setPiece }) => {
     return (<>
         {art_piece.user_favorite ?
             (
@@ -13,10 +13,11 @@ export const FavoriteButton = ({ art_piece, setArt }) => {
                                 deleteFavorite(art_piece.id)
                                 .then(() => {
                                 getAllArt().then((data) => setArt(data))
+                                getSinglePiece(art_piece.id).then((data) => setPiece(data))
                                 }
                                 )
                             }> <p>
-                                favorite
+                                unfavorite
                                 </p>
                             <span class="icon is-small is-warning">
                                 <i class="has-text-warning">
@@ -35,13 +36,14 @@ export const FavoriteButton = ({ art_piece, setArt }) => {
                                 addFavorite(art_piece.id)
                                 .then(() => {
                                     getAllArt().then((data) => setArt(data))
+                                    getSinglePiece(art_piece.id).then((data) => setPiece(data))
                                     })
                             }>
                                 <p>
                                 favorite 
                                 </p>
-                            <span class="icon is-small is-warning ">
-                                <i class="has-text-warning"><Icon path={mdiStarOutline} size={.7} /></i>
+                            <span class="icon is-small is-warning">
+                                <i class="has-text-warning-dark"><Icon path={mdiStarOutline} size={.7} /></i>
                             </span>
                         </a>
                     </p>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { FollowButton } from "./FollowButton"
 
-export const Artist = ({ artist, setArtists }) => {
+export const Artist = ({ artist, setArtists, setFilteredArtists }) => {
     return (
         <>
             <div class="tile is-parent is-4">
@@ -23,7 +23,7 @@ export const Artist = ({ artist, setArtists }) => {
                 </div>
                 <div class="level-right" style={{}}>
                     <div class="level-item">
-                    <FollowButton artist={artist} setArtists={setArtists} />
+                    <FollowButton artist={artist} setArtists={setArtists} setFilteredArtists={setFilteredArtists}/>
                     </div>
                 </div>
             </nav>

@@ -45,7 +45,7 @@ export const Art = ({ art_piece, setArt, state }) => {
                             {art_piece.title}
                         </Link></p>
                     <p className="subtitle">{art_piece.subtitle}</p>
-                    <FavoriteButton art_piece={art_piece} setArt={setArt}/>
+                        <FavoriteButton art_piece={art_piece} setArt={setArt}/>
 
                     <img className="art__image" src={art_piece.image_url} alt={art_piece.image_url} />
                         <LikeButton art_piece={art_piece} setArt={setArt}/>
