@@ -29,6 +29,8 @@ import { AddPieceForm, PieceForms } from "../components/art/AddPieceForm"
 import { EditPieceForm } from "../components/art/EditPieceForm"
 import { Profile } from "../components/artists/Profile"
 import { PieceContainer } from "../components/art/PieceContainer"
+import { ArtistFeed } from "../components/artists/ArtistsFeed"
+import { ArtistDetail } from "../components/artists/ArtistDetail"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -44,6 +46,10 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/art" >
             <Route index element={<PieceContainer/>} />
             <Route path=":pieceId" element={<PieceDetail/>} />
+        </Route>
+        <Route path="/artists" >
+            <Route index element={<ArtistFeed/>} />
+            <Route path=":artistId" element={<ArtistDetail/>} />
         </Route>
         <Route path="/portfolio" >
             <Route index element={<Portfolio/>} />
