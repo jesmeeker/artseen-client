@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArtByArtistId } from "../../managers/Art";
 import { getSingleArtist } from "../../managers/Users";
-import { Art } from "../art/Piece";
+import { Art } from "../art/Art";
 import { FollowButton } from "./FollowButton";
 
 export const ArtistDetail = ({ setArtists }) => {
