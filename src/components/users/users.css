@@ -1,0 +1,68 @@
+.subtitle.is-custom {
+    font-size: 12px;
+}
+
+.subtitle.is-custom-margin {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.title.is-margin {
+    padding-bottom: 10px;
+}
+
+.hover:hover {
+    opacity: 0.7;
+}
+
+.hover {
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+._image {
+    width: fit-content;
+    object-fit: cover;
+    padding: .15rem
+}
+
+.art__piececard {
+    background-color: white;
+    border: 1px dotted black;
+}
+
+.art__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px 50px 0px 50px;
+    margin: 20px;
+    border-radius: 3px;
+    justify-content: space-between;
+}
+
+.art__page_header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0px 50px 0px 50px;
+    margin: 20px;
+    border-radius: 3px;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(199, 199, 199);
+}
+
+.profile__input, .profile__select .profile__textarea {
+    background-color: transparent;
+    border: none;
+    width: fit-content;
+    height: auto
+}
+
+.profile__textarea {
+    min-height: 20rem;
+    width: 100%;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border: none
+}

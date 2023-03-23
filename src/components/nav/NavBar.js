@@ -38,13 +38,6 @@ export const NavBar = () => {
                 setRegisterState("register")
                     ;
             }
-
-            // function closeAllModals() {
-            //     (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-            //         closeModal($modal);
-            //     });
-            // }
-
             // Add a click event on buttons to open a specific modal
             (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
                 const modal = $trigger.dataset.target;
@@ -112,16 +105,16 @@ export const NavBar = () => {
                         My Favorite Art
                     </Link>
                     <span className="padding">/</span>
-                    <Link to="/following" className="navbar-item">
-                        Artists I Follow
-                    </Link>
-                    <span className="padding">/</span>
                     <Link to="/art" className="navbar-item">
                         Browse Art
                     </Link>
                     <span className="padding">/</span>
                     <Link to="/artists" className="navbar-item">
                         Browse Artists
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/profile" className="navbar-item">
+                        Profile
                     </Link>
 
                 </>
@@ -143,6 +136,10 @@ export const NavBar = () => {
                     <span className="padding">/</span>
                     <Link to="/inbox" className="navbar-item">
                         Inbox
+                    </Link>
+                    <span className="padding">/</span>
+                    <Link to="/profile" className="navbar-item">
+                        Profile
                     </Link>
                 </>
             }

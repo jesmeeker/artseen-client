@@ -6,10 +6,11 @@ import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { AddPieceForm, PieceForms } from "../components/art/AddPieceForm"
 import { EditPieceForm } from "../components/art/EditPieceForm"
-import { Profile } from "../components/artists/Profile"
 import { PieceContainer } from "../components/art/PieceContainer"
 import { ArtistFeed } from "../components/artists/ArtistsFeed"
 import { ArtistDetail } from "../components/artists/ArtistDetail"
+import { FavoritesContainer } from "../components/art/FavoritesContainer"
+import { Profile } from "../components/users/Profile"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -26,6 +27,7 @@ export const ApplicationViews = ({ token, setToken }) => {
             <Route index element={<PieceContainer/>} />
             <Route path=":pieceId" element={<PieceDetail/>} />
         </Route>
+        <Route path ="/favorites" element={<FavoritesContainer />} />
         <Route path="/artists" >
             <Route index element={<ArtistFeed/>} />
             <Route path=":artistId" element={<ArtistDetail/>} />

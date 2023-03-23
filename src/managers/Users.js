@@ -8,8 +8,49 @@ export const getCurrentUser = () => {
         .then(res => res.json())
 }
 
+export const getCurrentManager = () => {
+    return fetch(`http://localhost:8000/manager?user`,
+        {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+            }
+        })
+        .then(res => res.json())
+}
+
+export const getCurrentViewer = () => {
+    return fetch(`http://localhost:8000/viewer?user`,
+        {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+            }
+        })
+        .then(res => res.json())
+}
+
 export const updateArtist = (id, body) => {
     return fetch(`http://localhost:8000/artist/${id}`, {
+        method: "PUT",
+        headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        },
+        body: JSON.stringify(body),
+    })
+};
+
+export const updateManager = (id, body) => {
+    return fetch(`http://localhost:8000/manager/${id}`, {
+        method: "PUT",
+        headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        },
+        body: JSON.stringify(body),
+    })
+};
+export const updateViewer = (id, body) => {
+    return fetch(`http://localhost:8000/viewer/${id}`, {
         method: "PUT",
         headers: { 
         "Content-Type": "application/json",

@@ -1,46 +1,38 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getCities } from "../../managers/Cities"
-import { getCurrentUser, updateArtist } from "../../managers/Users"
-import "./artist.css"
+import { getCurrentViewer, updateViewer} from "../../managers/Users"
+import "./users.css"
 
 
 
-export const Profile = ({ token }) => {
+export const ViewerProfile = ({ token }) => { const [changed, setChanged] = useState(false);
     const [cities, setCities] = useState([])
     const [user, setUser] = useState({
         user: {},
-        image_url: "",
-        website: "",
         city: {},
-        phone_number: 0,
-        bio: ""
+        phone_number: 0
     })
 
     const [tempUser, setTempUser] = useState({
         user: {},
-        image_url: "",
-        website: "",
         city: {},
         phone_number: 0,
-        bio: ""
     })
-
-    const [changed, setChanged] = useState(false);
 
     useEffect(() => {
         getCities().then(data => setCities(data))
     }, [])
 
     useEffect(() => {
-        getCurrentUser().then((data) => {
+        getCurrentViewer().then((data) => {
             setUser(data[0])
             setTempUser(data[0])
         })
     }, [])
 
     const handleSave = (e) => {
-        updateArtist(tempUser.id, tempUser)
+        updateViewer(tempUser.id, tempUser)
         setChanged(false)
             .then((response) => {
                 if (!response.ok) throw new Error('something went wrong');
@@ -50,11 +42,6 @@ export const Profile = ({ token }) => {
                 setUser(data);
             })
     }
-    //     <div class="tile is-ancestor">
-    //   <div class="tile is-vertical is-8">
-    //     <div class="tile">
-    //       <div class="tile is-parent is-vertical">
-    //         <article class="tile is-child notification is-primary">
 
     return (
         <>
@@ -64,7 +51,6 @@ export const Profile = ({ token }) => {
                         <div class="tile">
                             <div class="tile is-parent is-vertical">
                                 <article class="tile is-child notification">
-                                    <img className="_image" src={user.image_url} alt={user.image_url} />
                                     {changed ? (
                                         <div className="mb-2">
                                             <button
@@ -88,16 +74,13 @@ export const Profile = ({ token }) => {
                                         </div>
                                     ) : null}
                                 </article>
-                                <article class="tile is-child">
-
-                                </article>
                             </div>
                             <div class="tile is-parent is-8">
                                 <article class="tile is-child">
                                     <form
                                         className="art__container"
                                         id="artist"
-                                        onSubmit={updateArtist}
+                                        onSubmit={updateViewer}
                                     >
                                         <div className="form-group">
                                             <fieldset>
@@ -141,19 +124,6 @@ export const Profile = ({ token }) => {
                                                         setTempUser(copy);
                                                     }}
                                                 /></p>
-                                                <p className="title">website: <input
-                                                    className="title profile__input"
-                                                    id="website"
-                                                    type="text"
-                                                    value={tempUser.website}
-                                                    onChange={(e) => {
-                                                        const copy = { ...tempUser }
-                                                        copy.website = (e.target.value)
-                                                        setChanged(true);
-                                                        setTempUser(copy);
-                                                    }}
-                                                />
-                                                </p>
                                                 <p className="title">phone: <input
                                                     className="title profile__input"
                                                     id="website"
@@ -169,7 +139,7 @@ export const Profile = ({ token }) => {
                                                 </p>
                                                 <p className="title">city: <select
                                                     className="title profile__input"
-                                                    id="website"
+                                                    id="city"
                                                     type="text"
                                                     value={tempUser.city.id}
                                                     onChange={(e) => {
@@ -199,20 +169,6 @@ export const Profile = ({ token }) => {
                                                         setTempUser(copy);
                                                     }}
                                                 />
-                                                </p>
-                                                <p className="title">bio:
-                                                    <textarea
-                                                        className="title profile__textarea"
-                                                        id="bio"
-                                                        type="textbox"
-                                                        value={tempUser.bio}
-                                                        onChange={(e) => {
-                                                            const copy = { ...tempUser }
-                                                            copy.bio = (e.target.value)
-                                                            setChanged(true);
-                                                            setTempUser(copy);
-                                                        }}
-                                                    />
                                                 </p>
                                             </fieldset>
                                         </div>
