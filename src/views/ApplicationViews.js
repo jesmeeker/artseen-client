@@ -11,6 +11,7 @@ import { ArtistFeed } from "../components/artists/ArtistsFeed"
 import { ArtistDetail } from "../components/artists/ArtistDetail"
 import { FavoritesContainer } from "../components/art/FavoritesContainer"
 import { Profile } from "../components/users/Profile"
+import { Cart } from "../components/cart/Cart"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -39,6 +40,9 @@ export const ApplicationViews = ({ token, setToken }) => {
         </Route>
         <Route path="/profile" >
             <Route index element={<Profile/>} />
+          </Route>
+        <Route path="/cart" >
+            <Route index element={<Cart/>} />
         </Route>
         <Route element={<Authorized token={token} />}>
         </Route>

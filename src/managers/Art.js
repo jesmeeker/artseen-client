@@ -134,3 +134,16 @@ export const deleteFavorite = (id) => {
         }
     })
 }
+
+export const addToCart = (body) => {
+  return fetch(`http://localhost:8000/profile/cart`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Token ${localStorage.getItem("artseen_token")}`,
+          "Accept": "application/json"
+      },
+      body: JSON.stringify(body)
+  })
+  .then(res => res.json())
+}
