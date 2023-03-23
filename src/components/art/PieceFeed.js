@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getAllArt } from "../../managers/Art"
 import { Art } from "./Art"
 
-export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMedium }) => {
+export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMedium, favoriteState }) => {
     const [art, setArt] = useState([])
     const [filteredArt, setFilteredArt] = useState([])
 
@@ -56,6 +56,16 @@ export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMed
             setFilteredArt(filteredCopy)
         }
     }, [art, selectedArtType, selectedSubType, selectedMedium])
+
+    useEffect(() => {
+        if (favoriteState === false) {
+            const filteredCopy = art.filter(a => a.user_favorite === true)
+            setFilteredArt(filteredCopy)
+        }
+        else {
+            setFilteredArt(art)
+        }
+    }, [favoriteState])
 
     return (
         <>
