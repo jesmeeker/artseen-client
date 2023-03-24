@@ -13,6 +13,8 @@ import { FavoritesContainer } from "../components/art/FavoritesContainer"
 import { Profile } from "../components/users/Profile"
 import { Cart } from "../components/cart/Cart"
 import { CartPayment } from "../components/cart/CartPayment"
+import { CartReview } from "../components/cart/CartReview"
+import { CartSuccess } from "../components/cart/CartSuccess"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -45,6 +47,8 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/cart" >
             <Route index element={<Cart/>} />
             <Route path="payment" element={<CartPayment />} />
+            <Route path=":paymentId/review" element={<CartReview />} />
+            <Route path="success" element={<CartSuccess />} />
         </Route>
         <Route element={<Authorized token={token} />}>
         </Route>
