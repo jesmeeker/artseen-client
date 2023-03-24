@@ -24,6 +24,8 @@ export const NavBar = () => {
         setTokenState(localStorage.getItem('artseen_token'))
     }, [setToken])
 
+    console.log(`"token" ${token}`)
+
     const navbar = useRef();
 
     useEffect(() => {
@@ -76,7 +78,7 @@ export const NavBar = () => {
     };
 
     const menuItemsToDisplay = () => {
-        if (token != null) {
+        if (token) {
             if (permissions === "artist") {
                 return <>
                     <span className="padding">/</span>
@@ -145,20 +147,20 @@ export const NavBar = () => {
         }
         else {
             return <>
-                <span className="padding"></span>
+                {/* <span className="padding"></span>
                 <Link to="/artists" className="navbar-item">
                     Browse Artists
                 </Link>
                 <span className="padding">/</span>
                 <Link to="/art" className="navbar-item">
                     Browse Art
-                </Link>
+                </Link> */}
             </>
         }
     }
 
     const rightSideNav = () => {
-        if (token != null) {
+        if (token) {
             if (permissions === "viewer") {
                 return <>
                     <p class="level">
@@ -188,8 +190,9 @@ export const NavBar = () => {
                     <button
                         className="button is-rounded"
                         onClick={() => {
-                            setToken("", "");
                             navigate("/login");
+                            setToken("", "");
+                            console.log(token)
                         }}
                     >
                         Logout
@@ -198,7 +201,7 @@ export const NavBar = () => {
             }
         }
         else {
-            <>
+            return <>
                 <button className="js-modal-trigger button is-rounded is-link" data-target="modal-js-example">
                     Register
                 </button>
