@@ -19,7 +19,6 @@ export const ArtistFeed = () => {
     return <>
         <div className="container">
             <nav className="level">
-
             </nav>
             <nav className="level bottom-border-light">
                 <div class="level-left">

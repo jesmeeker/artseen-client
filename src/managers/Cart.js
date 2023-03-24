@@ -15,3 +15,23 @@ export const deleteFromCart = (id) => {
     })
         .then(res => res.json())
 }
+
+export const getUserPayments = () => {
+    return fetch("http://localhost:8000/paymenttypes", {
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+      },
+    })
+        .then(res => res.json())
+}
+
+export const createNewPayment = (postbody) => { 
+    return fetch(`http://localhost:8000/paymenttypes`, {
+        method: "POST",
+        headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("artseen_token")}`
+        },
+        body: JSON.stringify(postbody),
+    })
+  }
