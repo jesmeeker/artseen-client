@@ -72,7 +72,7 @@ export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState, s
                             </>
                         ) : ("")
                         }
-                    <AddToCartButton art_piece={art_piece} permissions={permissions} />
+                    <AddToCartButton art_piece={art_piece} permissions={permissions} setArt={setArt} setArtistsArt={setArtistsArt} setFilteredArt={setFilteredArt} setFavorites={setFavorites} artistId={artistId} favoriteState={favoriteState}/>
                 </article>
             </div>
 

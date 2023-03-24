@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSinglePiece } from "../../managers/Art";
+import { AddToCartButton } from "./AddToCartButton";
 import "./art.css";
 import { FavoriteButton } from "./FavoriteButton";
 import { LikeButton } from "./LikeButton";
@@ -35,6 +36,7 @@ export const PieceDetail = ({ token }) => {
                         <p className="title">price: ${piece.price}</p>
                         <p className="title">about: {piece.about}</p>
                     </article>
+                    <AddToCartButton setPiece={setPiece} />
                 </div>
             </div>
         </div>
