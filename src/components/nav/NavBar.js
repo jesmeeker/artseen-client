@@ -220,7 +220,7 @@ export const NavBar = () => {
             aria-label="main navigation"
         >
             <div className="navbar-brand">
-                <a className="navbar-item" href="/">
+                <a className="navbar-item" href="/home">
                     <h1 class="title is-3" className="rareHeader">ArtSeen</h1>
                 </a>
                 <a
