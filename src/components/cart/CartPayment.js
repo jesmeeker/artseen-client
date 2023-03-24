@@ -26,6 +26,9 @@ export const CartPayment = () => {
         getUserPayments().then(data => setPayments(data))
     }
 
+    console.log(payments.length)
+
+
     useEffect(() => {
         document.addEventListener('click', () => {
 
@@ -61,6 +64,61 @@ export const CartPayment = () => {
         });
     }, [])
 
+    const length = payments.length
+    console.log(length)
+
+    const paymentMethods = () => {
+        if (payments.length >= 1) {
+            return (<>
+                {payments.map((payment) => {
+                    return <div class="box">
+                            <nav class="level">
+                                <p class="level-item has-text-centered">
+                                    <a class="subtitle has-text-dark">{payment?.merchant_name}</a>
+                                </p>
+                                <p class="level-item has-text-centered">
+                                    <a class="subtitle has-text-dark">x{payment?.account_number}</a>
+                                </p>
+                                <p class="level-item has-text-centered">
+                                    <a class="subtitle has-text-dark">exp. {payment?.expiration_date}</a>
+                                </p>
+                                <p class="level-item has-text-centered">
+                                    <input
+                                        name="purchase"
+                                        type="radio"
+                                        className="form-control"
+                                        value={payment.id}
+                                        checked={selectedPayment.id}
+                                        onChange={(event) => {
+                                            setSelectedPayment(event.target.value)
+                                        }}
+                                    />
+                                </p>
+                            </nav>
+                        </div>
+                })}
+                    <div class="level-left">
+                    <div class="js-modal-trigger content" data-target="modal-js-payment-add">                            
+                            <p>
+                                <button class="button is-rounded is-warning js-modal-trigger subtitle has-text-dark" data-target="modal-js-payment-add">Add New Payment</button>
+                            </p>
+                        </div>
+                    </div>
+                    </>
+                );}
+            else {
+                return <div class="level-left">
+                    <div class="js-modal-trigger content" data-target="modal-js-payment-add">
+                        <p>
+                            <button class="button is-rounded is-warning js-modal-trigger subtitle has-text-dark" data-target="modal-js-payment-add">Add A Payment</button>
+
+                        </p>
+                    </div>
+                </div>
+            
+            }
+        }
+
     return (
         <>
             <section class="container">
@@ -87,47 +145,8 @@ export const CartPayment = () => {
                         <div class="tile is-parent is-9">
                             <article class="tile is-child">
                                 {
-                                    payments.map((payment) => (
-                                        <div class="box">
-                                            <nav class="level">
-                                                <p class="level-item has-text-centered">
-                                                    <a class="subtitle has-text-dark">{payment.merchant_name}</a>
-                                                </p>
-                                                <p class="level-item has-text-centered">
-                                                    <a class="subtitle has-text-dark">x{payment.account_number}</a>
-                                                </p>
-                                                <p class="level-item has-text-centered">
-                                                    <a class="subtitle has-text-dark">exp. {payment.expiration_date}</a>
-                                                </p>
-                                                <p class="level-item has-text-centered">
-                                                <input
-                                                    name="purchase"
-                                                    type="radio"
-                                                    className="form-control"
-                                                    value={payment.id}
-                                                    checked={selectedPayment.id}
-                                                    onChange={(event) => {
-                                                        setSelectedPayment(event.target.value)
-                                                    }}
-                                                />
-                                                </p>
-                                            </nav>
-                                            <div id="modal-js-payment-add" class="modal">
-                                                <div class="modal-background"></div>
-                                                <PaymentAddModal pieceId={payment.id} getAllUserPayments={getAllUserPayments}/>
-                                                <button class="modal-close is-large" aria-label="close"></button>
-                                            </div>
-                                        </div>
-                                    ))
+                                    paymentMethods()
                                 }
-                                <div class="level-left">
-                                    <div class="content">
-                                        <p>
-                                            <button class="button is-rounded is-warning js-modal-trigger subtitle has-text-dark" data-target="modal-js-payment-add">Add New Payment</button>
-
-                                        </p>
-                                    </div>
-                                </div>
                             </article>
                         </div>
                         <div class="tile is-parent">
@@ -189,8 +208,9 @@ export const CartPayment = () => {
                                         <div class="content">
                                             <button class="button is-rounded is-link"
                                                 onClick={() => {
-                                                    
-                                                    navigate(`/cart/${selectedPayment}/review`)}
+
+                                                    navigate(`/cart/${selectedPayment}/review`)
+                                                }
                                                 }>
                                                 Review Details
                                             </button>
@@ -198,6 +218,11 @@ export const CartPayment = () => {
                                     </div>
 
                                 </article>
+                                <div id="modal-js-payment-add" class="modal">
+                                <div class="modal-background"></div>
+                                        <PaymentAddModal  getAllUserPayments={getAllUserPayments} setPayments={setPayments} />
+                                <button class="modal-close is-large" aria-label="close"></button>
+                            </div>
                             </article>
                         </div>
                     </div>
