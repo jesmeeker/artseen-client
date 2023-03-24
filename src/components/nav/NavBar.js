@@ -29,7 +29,7 @@ export const NavBar = () => {
     const navbar = useRef();
 
     useEffect(() => {
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('click', () => {
 
             // Functions to open and close a modal
             function openModal($el) {
@@ -203,12 +203,14 @@ export const NavBar = () => {
         }
         else {
             return <>
+            <p class="level">
                 <button className="js-modal-trigger button is-rounded is-link" data-target="modal-js-example">
                     Register
                 </button>
                 <Link to="/login" className="button is-rounded">
                     Login
                 </Link>
+                </p>
             </>
         }
     }
@@ -265,5 +267,3 @@ export const NavBar = () => {
     </>
     );
 };
-
-

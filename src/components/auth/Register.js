@@ -9,7 +9,7 @@ export const Register = () => {
 
     // const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
 
-
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         setRegisterState(selectedOption)
@@ -35,8 +35,8 @@ export const Register = () => {
                                 />
 
                                 <label htmlFor="Artist">I'm an artist.</label>
-                            </div>
-                            <div className="field">
+                                </div>
+                                <div className="field">
                                 <input
                                     type="radio"
                                     name="account"
@@ -48,8 +48,8 @@ export const Register = () => {
                                 />
 
                                 <label htmlFor="Artist">I'm an art enthusiast.</label>
-                            </div>
-                            <div className="field">
+</div>
+<div className="field">
                                 <input
                                     type="radio"
                                     name="account"
@@ -60,7 +60,7 @@ export const Register = () => {
                                     }
                                 />
                                 <label htmlFor="Manager">I'm a gallery manager/owner.</label>
-                            </div>
+                                </div>
                             <div className="level">
                                 <div className="level-item">
                                     <button className="level-left modal-cancel button is-rounded is-danger is-light is-small" data-target="modal-js-example">
