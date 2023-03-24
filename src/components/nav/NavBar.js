@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Icon from '@mdi/react';
+
 import { ArtistRegister } from "../auth/ArtistRegister";
 import { Register } from "../auth/Register";
 import "./NavBar.css";
+import { mdiCartOutline } from "@mdi/js";
 
 export const NavBar = () => {
     const [registerState, setRegisterState] = useState("register")
@@ -10,7 +13,7 @@ export const NavBar = () => {
 
     const navigate = useNavigate();
     const permissions = localStorage.getItem('permissions')
-    
+
     const setToken = (newToken, permissions) => {
         localStorage.setItem('artseen_token', newToken)
         localStorage.setItem('permissions', permissions)
@@ -157,7 +160,58 @@ export const NavBar = () => {
             </>
         }
     }
-    
+
+    const rightSideNav = () => {
+        if (token != null) {
+            if (permissions === "viewer") {
+                return <>
+                    <p class="level">
+                        <a a class="button is-rounded is-small" style={{ border: "none", background: "none" }}
+                        onClick={() =>
+                            (navigate("/cart"))
+                        }>
+                            <span class="icon is-small">
+                                <i class="has-text-warning"></i>
+                                <i class="has-text-black"><Icon path={mdiCartOutline} size={1.5} /></i>
+                            </span>
+                        </a>
+                        <button
+                            className="button is-rounded"
+                            onClick={() => {
+                                setToken("", "");
+                                navigate("/login");
+                            }}
+                        >
+                            Logout
+                        </button>
+                    </p>
+
+                </>
+            } else {
+                return <>
+                    <button
+                        className="button is-rounded"
+                        onClick={() => {
+                            setToken("", "");
+                            navigate("/login");
+                        }}
+                    >
+                        Logout
+                    </button>
+                </>
+            }
+        }
+        else {
+            <>
+                <button className="js-modal-trigger button is-rounded is-link" data-target="modal-js-example">
+                    Register
+                </button>
+                <Link to="/login" className="button is-rounded">
+                    Login
+                </Link>
+            </>
+        }
+    }
 
     return (<>
 
@@ -195,26 +249,7 @@ export const NavBar = () => {
                     <div className="navbar-item">
                         <div className="buttons">
                             {
-                                token ? (
-                                    <button
-                                        className="button is-rounded"
-                                        onClick={() => {
-                                            setToken("", "");
-                                            navigate("*");
-                                        }}
-                                    >
-                                        Logout
-                                    </button>
-                                ) : (
-                                    <>
-                                        <button className="js-modal-trigger button is-rounded is-link" data-target="modal-js-example">
-                                            Register
-                                        </button>
-                                        <Link to="/login" className="button is-rounded">
-                                            Login
-                                        </Link>
-                                    </>
-                                )
+                                rightSideNav()
                             }
 
                         </div>

@@ -63,3 +63,11 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 input, textarea {
   font-family: "Playfair Display";
 }
+
+.bottom-border {
+  border-bottom: .5px solid rgb(129, 129, 129);
+}
+
+.bottom-border-light {
+  border-bottom: .5px solid rgb(129, 129, 129);
+}

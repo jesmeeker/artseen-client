@@ -37,17 +37,9 @@
   flex-wrap: wrap;
   margin: 0 auto;
   position: relative;
-  width: auto;
-  /* padding: 0px 50px 0px 50px;
-  margin: 20px;
-  border-radius: 3px;
-  justify-content: space-between; */
+  width: auto
 }
 
 .block:not(:last-child) {
   margin-bottom: 1.5rem;
-}
-
-.bottom-border {
-  border-bottom: 1px solid white;
 }

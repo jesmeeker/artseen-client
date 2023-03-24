@@ -1,16 +1,21 @@
-import Icon from '@mdi/react';
-import { mdiThumbUp, mdiThumbDown, mdiThumbUpOutline } from '@mdi/js';
 import { Link, useNavigate } from "react-router-dom"
-import { addLike, deleteLike, deletePiece, getAllArt, getCurrentUserPieces } from "../../managers/Art"
+import { addToCart, deletePiece, getAllArt, getCurrentUserPieces } from "../../managers/Art"
 import "./art.css"
-import { deleteFollow } from '../../managers/Users';
 import { LikeButton } from './LikeButton';
 import { FavoriteButton } from './FavoriteButton';
+import {AddToCartButton } from './AddToCartButton';
+import { useState } from 'react';
 
 export const Art = ({ art_piece, setArt, state }) => {
+    const [registerState, setRegisterState] = useState("register")
+    const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
+
+    const permissions = localStorage.getItem('permissions')
+
     const getUserPieces = () => {
         getCurrentUserPieces().then((data) => { setArt(data) })
     }
+    
     const getAllPieces = () => {
         getAllArt().then((data) => { setArt(data) })
     }
@@ -36,6 +41,7 @@ export const Art = ({ art_piece, setArt, state }) => {
         }
     }
     const navigate = useNavigate()
+
     return (
         <>
             <div class="tile is-parent is-4">
@@ -65,7 +71,8 @@ export const Art = ({ art_piece, setArt, state }) => {
                                 </button>
                             </>
                         ) : ("")
-                    }
+                        }
+                    <AddToCartButton art_piece={art_piece} permissions={permissions}/>
                 </article>
             </div>
 
