@@ -61,7 +61,7 @@ export const ViewerRegister = ({ setRegisterState })  => {
                     //   setToken(res.token)
                     setToken(res.token, res.permissions)
                     closeAllModals()
-                    navigate("/")
+                    navigate("/art")
                 }
             })
         } else {
@@ -204,12 +204,12 @@ export const ViewerRegister = ({ setRegisterState })  => {
                         </select>
                     </div>
                     <div className="field is-grouped">
-                    <div className="modal-cancel">
+                    <div className="modal-cancel mt-4 mr-2">
                         <button className="button is-link is-danger is-rounded">
                                 Cancel
                             </button>
                         </div>
-                        <div className="control">
+                        <div className="control mt-4">
                             <button className="button is-link is-rounded" onClick={handleRegister}>
                                 Submit
                             </button>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllMediums } from "../../managers/mediums";
 import "./art.css"
 
-export const PieceByMedium = ({ setSelectedMedium }) => {
+export const PieceByMedium = ({ selectedMedium, setSelectedMedium }) => {
     const [mediums, setMediums] = useState([]);
 
     useEffect(
@@ -13,7 +13,7 @@ export const PieceByMedium = ({ setSelectedMedium }) => {
     return (
         <><section className="posts__dropdown">
             <label htmlFor="mediums">Medium</label><br></br>
-            <select onChange={(event) => { setSelectedMedium(parseInt(event.target.value)) }}>
+            <select value={selectedMedium} onChange={(event) => { setSelectedMedium(parseInt(event.target.value)) }}>
                 <option value="0" name="media_id" className="form-control" >View All</option>
                 {mediums.map(media => (
                     <option key={`media--${media.id}`} value={media.id}>

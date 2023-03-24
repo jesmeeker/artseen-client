@@ -64,7 +64,7 @@ export const ManagerRegister = ({ setRegisterState })  => {
                 if ("token" in res) {
                     setToken(res.token, res.permissions)
                     closeAllModals()
-                    navigate("/")
+                    navigate("/art")
                 }
             })
         } else {

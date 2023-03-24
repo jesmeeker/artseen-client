@@ -15,20 +15,23 @@ import { Cart } from "../components/cart/Cart"
 import { CartPayment } from "../components/cart/CartPayment"
 import { CartReview } from "../components/cart/CartReview"
 import { CartSuccess } from "../components/cart/CartSuccess"
+import { LandingPage } from "../components/home/LandingPage"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/register" element={<Register setToken={setToken} />} />
-        <Route path="/">
-          <Route index element={<PieceContainer token={token} />} />
-          <Route path="add" element={<AddPieceForm />} />
-          <Route path=":pieceId/edit" element={<EditPieceForm />} />
+      <Route path="/">
+          <Route index element={<LandingPage token={token} />} />
+          <Route path="home" element={<LandingPage/>} />
+          <Route path="login" element={<Login setToken={setToken} />} />
+          <Route path="register" element={<Register setToken={setToken} />} />
         </Route>
+        
         <Route path="/art" >
             <Route index element={<PieceContainer/>} />
+            <Route path="add" element={<AddPieceForm />} />
+            <Route path=":pieceId/edit" element={<EditPieceForm />} />
             <Route path=":pieceId" element={<PieceDetail/>} />
         </Route>
         <Route path ="/favorites" element={<FavoritesContainer />} />
