@@ -56,7 +56,7 @@ export const FavoritesFeed = ({ token, selectedArtType, selectedSubType, selecte
             )
             setFilteredArt(filteredCopy)
         }
-    }, [art, selectedArtType, selectedSubType, selectedMedium])
+    }, [ selectedArtType, selectedSubType, selectedMedium])
 
     useEffect(() => {
         if (favoriteState === false) {

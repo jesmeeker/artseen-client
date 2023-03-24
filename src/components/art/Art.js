@@ -6,7 +6,7 @@ import { FavoriteButton } from './FavoriteButton';
 import {AddToCartButton } from './AddToCartButton';
 import { useState } from 'react';
 
-export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState}) => {
+export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState, setArtistsArt, artistId}) => {
     const [registerState, setRegisterState] = useState("register")
     const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
 
@@ -54,7 +54,7 @@ export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState}) 
                         <FavoriteButton art_piece={art_piece} setArt={setArt} setFilteredArt={setFilteredArt} favoriteState={favoriteState}/>
 
                     <img className="art__image" src={art_piece.image_url} alt={art_piece.image_url} />
-                        <LikeButton art_piece={art_piece} setArt={setArt}/>
+                        <LikeButton art_piece={art_piece} setArt={setArt} setArtistsArt={setArtistsArt} setFilteredArt={setFilteredArt} artistId={artistId}/>
                     <div>{art_piece.artist?.full_name}</div>
                     <div>{art_piece.arttype?.label} {art_piece.media?.label}</div>
                     <div>{art_piece.length}'x{art_piece.width}'x{art_piece.height}'</div>
@@ -72,7 +72,7 @@ export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState}) 
                             </>
                         ) : ("")
                         }
-                    <AddToCartButton art_piece={art_piece} permissions={permissions}/>
+                    <AddToCartButton art_piece={art_piece} permissions={permissions} />
                 </article>
             </div>
 

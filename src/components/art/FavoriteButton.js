@@ -20,8 +20,7 @@ export const FavoriteButton = ({ art_piece, setArt, setPiece, favoriteState, set
                                         setFilteredArt(filteredCopy)
                                     }
                                     else {
-                                        const filteredCopy = data.filter(a => a.user_favorite === true)
-                                        setFilteredArt(filteredCopy)
+                                        setFilteredArt(data)
                                     }
                                 })
                             }}
@@ -41,13 +40,20 @@ export const FavoriteButton = ({ art_piece, setArt, setPiece, favoriteState, set
                 <>
                     <p class="field">
                         <a class="button is-rounded is-small is-link is-light" style={{ border: "none" }}
-                            onClick={() =>
+                            onClick={() => {
                                 addFavorite(art_piece.id)
-                                    .then(() => {
-                                        getAllArt().then((data) => setArt(data))
-                                        getSinglePiece(art_piece.id).then((data) => setPiece(data))
-                                    })
-                            }>
+                                getSinglePiece(art_piece.id).then((data) => setPiece(data))
+                                getAllArt().then((data) => {
+                                    setArt(data)
+                                    if (favoriteState === false) {
+                                        const filteredCopy = data.filter(a => a.user_favorite === true)
+                                        setFilteredArt(filteredCopy)
+                                    }
+                                    else {
+                                        setFilteredArt(data)
+                                    }
+                                })
+                            }}>
                             <p>
                                 favorite
                             </p>
