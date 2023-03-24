@@ -29,7 +29,7 @@ export const NavBar = () => {
     const navbar = useRef();
 
     useEffect(() => {
-        document.addEventListener('click', () => {
+        document.addEventListener('DOMContentLoaded', () => {
 
             // Functions to open and close a modal
             function openModal($el) {
@@ -187,17 +187,18 @@ export const NavBar = () => {
                 </>
             } else {
                 return <>
-                    <button
-                        className="button is-rounded"
-                        onClick={() => {
-                            navigate("/login");
-                            setToken("", "");
-                            console.log(token)
-                        }}
-                    >
-                        Logout
-                    </button>
-                </>
+                     <p class="level">
+                        <button
+                            className="button is-rounded"
+                            onClick={() => {
+                                setToken("", "");
+                                navigate("/login");
+                            }}
+                        >
+                            Logout
+                        </button>
+                    </p>
+                    </>
             }
         }
         else {
