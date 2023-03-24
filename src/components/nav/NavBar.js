@@ -188,6 +188,15 @@ export const NavBar = () => {
             } else {
                 return <>
                      <p class="level">
+                     <a a class="button is-rounded is-small" style={{ border: "none", background: "none" }}
+                        onClick={() =>
+                            (navigate("/cart"))
+                        }>
+                            {/* <span class="icon is-small">
+                                <i class="has-text-warning"></i>
+                                <i class="has-text-black"><Icon path={mdiCartOutline} size={1.5} /></i>
+                            </span> */}
+                        </a>
                         <button
                             className="button is-rounded"
                             onClick={() => {
