@@ -21,7 +21,7 @@ export const ArtistFeed = () => {
             <nav className="level">
 
             </nav>
-            <nav className="level bottom-border">
+            <nav className="level bottom-border-light">
                 <div class="level-left">
                     <div class="level-item">
                         <p className="title is-1">artists</p>

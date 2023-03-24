@@ -6,7 +6,7 @@ import { deleteFromCart, getAllCartItems } from "../../managers/Cart"
 import { CartItemDetail } from "./CartItemDetail"
 
 
-export const Cart = () => {
+export const CartPayment = () => {
     const [cartItems, setCartItems] = useState([])
     const [cart, setCart] = useState({})
     const navigate = useNavigate()
