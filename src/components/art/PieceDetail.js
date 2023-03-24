@@ -29,7 +29,8 @@ export const PieceDetail = ({ token }) => {
                         <p className="title">subtitle: {piece.subtitle}</p>
 
                         <p className="title">artist: {piece.artist?.full_name}</p>
-                        <p className="title">art type: {piece.arttype?.label} {piece.media?.label}</p>
+                        <p className="title">art type: {piece.arttype?.label}</p>
+                        <p className="title">Medium: {piece.media?.label}</p>
                         <p className="title">size: {piece.length}'x{piece.width}'x{piece.height}'</p>
                         <p className="title">price: ${piece.price}</p>
                         <p className="title">about: {piece.about}</p>

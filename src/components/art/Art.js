@@ -6,7 +6,7 @@ import { FavoriteButton } from './FavoriteButton';
 import {AddToCartButton } from './AddToCartButton';
 import { useState } from 'react';
 
-export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState, setArtistsArt, artistId}) => {
+export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState, setArtistsArt, artistId, setFavorites}) => {
     const [registerState, setRegisterState] = useState("register")
     const [token, setTokenState] = useState(localStorage.getItem('artseen_token'))
 
@@ -51,7 +51,7 @@ export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState, s
                             {art_piece.title}
                         </Link></p>
                     <p className="subtitle">{art_piece.subtitle}</p>
-                        <FavoriteButton art_piece={art_piece} setArt={setArt} setFilteredArt={setFilteredArt} favoriteState={favoriteState}/>
+                        <FavoriteButton art_piece={art_piece} setArt={setArt} setArtistsArt={setArtistsArt} setFilteredArt={setFilteredArt} setFavorites={setFavorites} artistId={artistId} favoriteState={favoriteState}/>
 
                     <img className="art__image" src={art_piece.image_url} alt={art_piece.image_url} />
                         <LikeButton art_piece={art_piece} setArt={setArt} setArtistsArt={setArtistsArt} setFilteredArt={setFilteredArt} artistId={artistId}/>

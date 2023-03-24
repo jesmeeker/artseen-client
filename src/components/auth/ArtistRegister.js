@@ -83,6 +83,9 @@ export const ArtistRegister = ({ setRegisterState }) => {
                         <div className="field-body">
                             <label className="label" width>First Name</label>
                         </div>
+                        <div className="field-body">
+                            <label className="label" width>Last Name</label>
+                        </div>
 
                     </div>
                     <div className="field">
@@ -237,7 +240,7 @@ export const ArtistRegister = ({ setRegisterState }) => {
                         <label className="label">Primary City</label>
                         <select
                             name="cityId"
-                            className="form-control"
+                            className="select"
                             ref={city}
                         >
                             <option value="0">Category Select</option>

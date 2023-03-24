@@ -17,7 +17,7 @@ export const PieceContainer = () => {
 
     const addPieceButton = () => {
         if (permissions === "artist") {
-            return <button className="button is-rounded is-link" onClick={() => navigate("add")}>
+            return <button className="button is-rounded is-link" onClick={() => navigate("/add")}>
             +Add Piece
         </button>
         } else {

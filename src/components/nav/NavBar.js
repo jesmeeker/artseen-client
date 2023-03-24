@@ -137,10 +137,6 @@ export const NavBar = () => {
                         Browse Art
                     </Link>
                     <span className="padding">/</span>
-                    <Link to="/inbox" className="navbar-item">
-                        Inbox
-                    </Link>
-                    <span className="padding">/</span>
                     <Link to="/profile" className="navbar-item">
                         Profile
                     </Link>

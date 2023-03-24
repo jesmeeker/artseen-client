@@ -78,7 +78,7 @@ export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMed
         <>
             <div className="art__container">
                 {filteredArt.map((art_piece) => (
-                    <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"} setFilteredArt={setFilteredArt} favoriteState={favoriteState}/>
+                    <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"} setFilteredArt={setFilteredArt} favoriteState={favoriteState} artistId={art_piece.artist.id}/>
                 ))}
             </div>
         </>
