@@ -7,7 +7,7 @@ import { FollowButton } from "./FollowButton";
 
 export const ArtistDetail = ({ setArtists }) => {
     const { artistId } = useParams()
-    const [art, setArt] = useState([])
+    const [art, setArtistsArt] = useState([])
     const [artist, setArtist] = useState({
         full_name: "",
         city: {
@@ -20,7 +20,7 @@ export const ArtistDetail = ({ setArtists }) => {
 
     useEffect(() => {
         getSingleArtist(artistId).then(setArtist)
-        getArtByArtistId(artistId).then((data) => setArt(data))
+        getArtByArtistId(artistId).then((data) => setArtistsArt(data))
     }, [, artistId])
 
     return <>
@@ -76,7 +76,7 @@ export const ArtistDetail = ({ setArtists }) => {
             <>
             <div className="art__container">
                 {art.map((art_piece) => (
-                    <Art key={art_piece.id} art_piece={art_piece} setArt={setArt} state={"PieceFeed"} />
+                    <Art key={art_piece.id} art_piece={art_piece} setArtistsArt={setArtistsArt} state={"PieceFeed"} artistId={artistId}/>
                 ))}
             </div>
         </>

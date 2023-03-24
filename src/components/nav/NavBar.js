@@ -24,6 +24,8 @@ export const NavBar = () => {
         setTokenState(localStorage.getItem('artseen_token'))
     }, [setToken])
 
+    console.log(`"token" ${token}`)
+
     const navbar = useRef();
 
     useEffect(() => {
@@ -137,10 +139,6 @@ export const NavBar = () => {
                         Browse Art
                     </Link>
                     <span className="padding">/</span>
-                    <Link to="/inbox" className="navbar-item">
-                        Inbox
-                    </Link>
-                    <span className="padding">/</span>
                     <Link to="/profile" className="navbar-item">
                         Profile
                     </Link>
@@ -189,26 +187,39 @@ export const NavBar = () => {
                 </>
             } else {
                 return <>
-                    <button
-                        className="button is-rounded"
-                        onClick={() => {
-                            setToken("", "");
-                            navigate("/login");
-                        }}
-                    >
-                        Logout
-                    </button>
-                </>
+                     <p class="level">
+                     <a a class="button is-rounded is-small" style={{ border: "none", background: "none" }}
+                        onClick={() =>
+                            (navigate("/cart"))
+                        }>
+                            {/* <span class="icon is-small">
+                                <i class="has-text-warning"></i>
+                                <i class="has-text-black"><Icon path={mdiCartOutline} size={1.5} /></i>
+                            </span> */}
+                        </a>
+                        <button
+                            className="button is-rounded"
+                            onClick={() => {
+                                setToken("", "");
+                                navigate("/login");
+                            }}
+                        >
+                            Logout
+                        </button>
+                    </p>
+                    </>
             }
         }
         else {
-            <>
+            return <>
+            <p class="level">
                 <button className="js-modal-trigger button is-rounded is-link" data-target="modal-js-example">
                     Register
                 </button>
                 <Link to="/login" className="button is-rounded">
                     Login
                 </Link>
+                </p>
             </>
         }
     }
@@ -221,7 +232,7 @@ export const NavBar = () => {
             aria-label="main navigation"
         >
             <div className="navbar-brand">
-                <a className="navbar-item" href="/">
+                <a className="navbar-item" href="/home">
                     <h1 class="title is-3" className="rareHeader">ArtSeen</h1>
                 </a>
                 <a
@@ -265,5 +276,3 @@ export const NavBar = () => {
     </>
     );
 };
-
-

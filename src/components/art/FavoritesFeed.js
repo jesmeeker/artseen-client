@@ -16,7 +16,7 @@ export const FavoritesFeed = ({ token, selectedArtType, selectedSubType, selecte
 
     useEffect(() => {
         if (selectedArtType === 0 && selectedSubType === 0 && selectedMedium === 0) {
-            setFilteredArt(art)
+            setFilteredArt(filteredArt)
         }
         else if (selectedArtType !== 0 && selectedSubType === 0 && selectedMedium === 0) {
             const filteredCopy = art.filter(
@@ -56,17 +56,17 @@ export const FavoritesFeed = ({ token, selectedArtType, selectedSubType, selecte
             )
             setFilteredArt(filteredCopy)
         }
-    }, [art, selectedArtType, selectedSubType, selectedMedium])
+    }, [ selectedArtType, selectedSubType, selectedMedium])
 
-    useEffect(() => {
-        if (favoriteState === false) {
-            const filteredCopy = art.filter(a => a.user_favorite === true)
-            setFilteredArt(filteredCopy)
-        }
-        else {
-            setFilteredArt(art)
-        }
-    }, [favoriteState])
+    // useEffect(() => {
+    //     if (favoriteState === false) {
+    //         const filteredCopy = art.filter(a => a.user_favorite === true)
+    //         setFilteredArt(filteredCopy)
+    //     }
+    //     else {
+    //         setFilteredArt(art)
+    //     }
+    // }, [favoriteState])
 
     const contentToDisplay = () => {
         if (art.length === 0) {
@@ -82,7 +82,7 @@ export const FavoritesFeed = ({ token, selectedArtType, selectedSubType, selecte
         else
         { return <>
             {filteredArt.map((art_piece) => (
-                <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"} />
+                <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"} setFavorites={setFilteredArt}/>
                 ))}
             </>
         }

@@ -147,3 +147,15 @@ export const addToCart = (body) => {
   })
   .then(res => res.json())
 }
+export const removeFromCart = (id) => {
+  return fetch(`http://localhost:8000/profile/cart/${id}`, {
+      method: "DELETE",
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Token ${localStorage.getItem("artseen_token")}`,
+          "Accept": "application/json"
+      },
+      body: JSON.stringify()
+  })
+  .then(res => res.json())
+}

@@ -23,7 +23,7 @@ export const Login = ({ token, setToken }) => {
                 if ("valid" in res && res.valid && "token" in res) {
                     
                     setToken(res.token, res.permissions)
-                    navigate("/")
+                    navigate("/art")
                 }
                 else {
                     //Used to generate a string on the form "Username or password not valid"

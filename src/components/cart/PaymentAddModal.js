@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { getSinglePiece } from "../../managers/Art"
 import { createNewPayment } from "../../managers/Cart"
 
-export const PaymentAddModal = ({ getAllUserPayments }) => {
+export const PaymentAddModal = ({ getAllUserPayments, setPayments }) => {
     const merchant_name = useRef()
     const account_number = useRef()
     const expiration_date = useRef()

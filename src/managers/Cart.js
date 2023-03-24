@@ -13,7 +13,6 @@ export const deleteFromCart = (id) => {
             "Authorization": `Token ${localStorage.getItem("artseen_token")}`
         }
     })
-        .then(res => res.json())
 }
 
 export const getUserPayments = () => {

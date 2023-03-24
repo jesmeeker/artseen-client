@@ -333,10 +333,10 @@ export const EditPieceForm = ({ }) => {
                                 type="number"
                                 name="quantity"
                                 placeholder="Qty Available"
-                                value={piece.quantity_available}
+                                value={piece.qty_available}
                                 onChange={(event) => {
                                     const copy = { ...piece }
-                                    copy.quantity_available = parseInt(event.target.value)
+                                    copy.qty_available = parseInt(event.target.value)
                                     setNewPiece(copy)
                                 }} />
                         </div>

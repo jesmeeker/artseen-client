@@ -185,7 +185,7 @@ export const Cart = () => {
                                                         <button class="button is-rounded is-link"
                                                             onClick={()  =>
                                                             navigate("payment")}>
-                                                            Place Order
+                                                            Go To Payment
                                                         </button>
                                                     </div>
                                                 </div>

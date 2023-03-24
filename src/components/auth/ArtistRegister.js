@@ -62,7 +62,7 @@ export const ArtistRegister = ({ setRegisterState }) => {
                 if ("token" in res) {
                     setToken(res.token, res.permissions)
                     closeAllModals()
-                    navigate("/")
+                    navigate("/art")
                 }
             })
         } else {
@@ -82,6 +82,9 @@ export const ArtistRegister = ({ setRegisterState }) => {
                     <div className="field-body">
                         <div className="field-body">
                             <label className="label" width>First Name</label>
+                        </div>
+                        <div className="field-body">
+                            <label className="label" width>Last Name</label>
                         </div>
 
                     </div>
@@ -237,7 +240,7 @@ export const ArtistRegister = ({ setRegisterState }) => {
                         <label className="label">Primary City</label>
                         <select
                             name="cityId"
-                            className="form-control"
+                            className="select"
                             ref={city}
                         >
                             <option value="0">Category Select</option>
@@ -251,12 +254,12 @@ export const ArtistRegister = ({ setRegisterState }) => {
                         </select>
                     </div>
                     <div className="field is-grouped">
-                    <div className="modal-cancel">
+                    <div className="modal-cancel mt-4 mr-2">
                         <button className="button is-link is-danger is-rounded">
                                 Cancel
                             </button>
                         </div>
-                        <div className="control">
+                        <div className="control mt-4">
                             <button className="button is-link is-rounded" onClick={handleRegister}>
                                 Submit
                             </button>
