@@ -15,11 +15,13 @@ import { Cart } from "../components/cart/Cart"
 import { CartPayment } from "../components/cart/CartPayment"
 import { CartReview } from "../components/cart/CartReview"
 import { CartSuccess } from "../components/cart/CartSuccess"
+import { LandingPage } from "../components/home/LandingPage"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
     <>
       <Routes>
+        <Route path="/home" element={<LandingPage/>} />
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route path="/">
