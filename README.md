@@ -1,71 +1,37 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # artseen-client
+
+# Artifacts
+ 
+[Wifeframe](https://www.figma.com/file/V9vQ4kEBGaGSluz76I88un/ArtSeen?t=5COFAmmv7QZUMjWq-0)
+
+[ERD](https://dbdiagram.io/d/6409395a296d97641d868639)
+
+[Python-Django Repository](https://github.com/jesmeeker/artseen-server)
+
+
+# ArtSeen: A Web App for Artists to connect with buyers, appreciators, and gallery manangers.
+
+## Primary Features:
+ArtSeen is a place for artists to showcase their work in the hopes to gain exposure in their communities, find buyers for their pieces, and to market to gallery owners/managers who want to show their work.
+
+
+Artists can upload pieces to show on ArtSeen. They can provide many data points for each piece, for example: art type, sub types, medium, surface, size, weight, if it is available to purchase or show, if the artist is willing to ship, whether or not it's unique and, if not, how many are avaialble.
+
+Art appreciators can create an account to view art and browse artists. They can like pieces, much like you would like a social media image or post, they can favorite specific pieces which they can later view their favorites. They can add pieces to a cart and purchase those pieces. And, they can follow specific artists.
+
+Gallery managers/owners are unable to purchase pieces directly from the artists to protect private buyer's interest. However, they can sign-up for an account to discover new artists and pieces that are available to show. In future versions, gallery managers will be able to initiate contact with artists through the app. Artists will not be able to initiate contact with gallery manager, but once a gallery manager initiates contact their conversations will remain until the gallery manager terminates the contact.
+
+
+## Target Audience:
+Artists, art collectors, gallery owners/managers.
+
+
+## Tech Stack
+
+![JavaScript](https://img.shields.io/badge/javascript-FFD700.svg?style=for-the-badge&logo=javascript&logoColor=black)
+![REACT.js](https://img.shields.io/badge/react-61DBFB.svg?style=for-the-badge&logo=react&logoColor=black)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![CSS3](https://img.shields.io/badge/%20CSS3-0078d7.svg?style=for-the-badge&logo=css3&logoColor=white)
+![BULMA](https://img.shields.io/badge/%20BULMA-36454F.svg?style=for-the-badge&logo=none&logoColor=white)
