@@ -11,9 +11,19 @@ export const PieceContainer = () => {
     const [selectedSubType, setSelectedSubType] = useState(0)
     const [selectedMedium, setSelectedMedium] = useState(0)
     const [favoriteState, setFavoriteState] = useState(true)
+    const permissions = localStorage.getItem('permissions')
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
+    const addPieceButton = () => {
+        if (permissions === "artist") {
+            return <button className="button is-rounded is-link" onClick={() => navigate("add")}>
+            +Add Piece
+        </button>
+        } else {
+            return <></>
+        }
+    }
     return <>
         <div className="container">
             <nav className="level">
@@ -27,9 +37,9 @@ export const PieceContainer = () => {
                 </div>
                 <div class="level-right" style={{}}>
                     <div class="level-item">
-                        <button className="button is-rounded is-link" onClick={() => navigate("add")}>
-                            +Add Piece
-                        </button>
+                        {
+                            addPieceButton()
+                        }
                     </div>
                 </div>
             </nav>
@@ -40,33 +50,41 @@ export const PieceContainer = () => {
                         favoriteState ? (
                     <button className="button is-rounded is-warning"
                         onClick={() => {
-                            setFavoriteState(!favoriteState)}}>
+                            setFavoriteState(false)}}>
                         View Favorites
                     </button>
                     ):
                     (
                     <button className="button is-rounded is-warning"
                         onClick={() => {
-                            setFavoriteState(!favoriteState)}}>
+                            setFavoriteState(true)}}>
                         View All
                     </button>
                     )
                     }
                 </div>
                 <div class="level-right">
-                    <div class="level-item">
-                        <PieceByArtType setSelectedArtType={setSelectedArtType} />
+                <div class="level-item">
+                    <button class="button is-small is-warning is-rounded mt-5"
+                        onClick={() => {
+                        setSelectedArtType(0)
+                        setSelectedSubType(0)
+                        setSelectedMedium(0)}}>
+                        Reset All
+                    </button>
                     </div>
                     <div class="level-item">
-                        <PieceBySubType setSelectedSubType={setSelectedSubType} selectedArtType={selectedArtType} />
+                        <PieceByArtType setSelectedArtType={setSelectedArtType} selectedArtType={selectedArtType} />
                     </div>
                     <div class="level-item">
-                        <PieceByMedium setSelectedMedium={setSelectedMedium} />
+                        <PieceBySubType setSelectedSubType={setSelectedSubType} selectedArtType={selectedArtType} selectedSubType={selectedSubType}/>
+                    </div>
+                    <div class="level-item">
+                        <PieceByMedium setSelectedMedium={setSelectedMedium} selectedMedium={selectedMedium}/>
                     </div>
                 </div>
             </nav>
         </div>
-
         <PieceFeed
             favoriteState={favoriteState}
             selectedSubType={selectedSubType}

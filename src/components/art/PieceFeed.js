@@ -5,7 +5,7 @@ import { Art } from "./Art"
 export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMedium, favoriteState }) => {
     const [art, setArt] = useState([])
     const [filteredArt, setFilteredArt] = useState([])
-
+    console.log(favoriteState)
     useEffect(() => {
         getAllArt().then((data) => {
             setArt(data)
@@ -55,7 +55,14 @@ export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMed
             )
             setFilteredArt(filteredCopy)
         }
-    }, [art, selectedArtType, selectedSubType, selectedMedium])
+        else if (selectedArtType !== 0 && selectedSubType !== 0 && selectedMedium !== 0) {
+            const filteredCopy = art.filter(
+                (a) =>
+                    a.media?.id === parseInt(selectedMedium) && a.subtypes.filter(subtype => subtype.id === parseInt(selectedSubType)).length > 0 && a.arttype?.id === parseInt(selectedArtType)
+            )
+            setFilteredArt(filteredCopy)
+        }
+    }, [ selectedArtType, selectedSubType, selectedMedium])
 
     useEffect(() => {
         if (favoriteState === false) {
@@ -71,7 +78,7 @@ export const PieceFeed = ({ token, selectedArtType, selectedSubType, selectedMed
         <>
             <div className="art__container">
                 {filteredArt.map((art_piece) => (
-                    <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"} />
+                    <Art key={art_piece.id} art_piece={art_piece} token={token} setArt={setArt} state={"PieceFeed"} setFilteredArt={setFilteredArt} favoriteState={favoriteState}/>
                 ))}
             </div>
         </>
