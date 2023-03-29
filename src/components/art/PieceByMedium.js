@@ -12,7 +12,8 @@ export const PieceByMedium = ({ selectedMedium, setSelectedMedium }) => {
 
     return (
         <><section className="posts__dropdown">
-            <label htmlFor="mediums">Medium</label><br></br>
+            <label htmlFor="mediums">Filter By Medium</label><br></br>
+            <div class="select">
             <select value={selectedMedium} onChange={(event) => { setSelectedMedium(parseInt(event.target.value)) }}>
                 <option value="0" name="media_id" className="form-control" >View All</option>
                 {mediums.map(media => (
@@ -22,6 +23,7 @@ export const PieceByMedium = ({ selectedMedium, setSelectedMedium }) => {
                 )
                 )}
             </select>
+            </div>
             </section>
         </>
     )

@@ -67,15 +67,15 @@ export const FavoritesContainer = () => {
                             }}>
                             Reset All
                         </button>
-                        <div class="level-item">
-                            <PieceByArtType setSelectedArtType={setSelectedArtType} />
-                        </div>
-                        <div class="level-item">
-                            <PieceBySubType setSelectedSubType={setSelectedSubType} selectedArtType={selectedArtType} />
-                        </div>
-                        <div class="level-item">
-                            <PieceByMedium setSelectedMedium={setSelectedMedium} />
-                        </div>
+                    </div>
+                    <div class="level-item">
+                        <PieceByArtType setSelectedArtType={setSelectedArtType} />
+                    </div>
+                    <div class="level-item">
+                        <PieceBySubType setSelectedSubType={setSelectedSubType} selectedArtType={selectedArtType} />
+                    </div>
+                    <div class="level-item">
+                        <PieceByMedium setSelectedMedium={setSelectedMedium} />
                     </div>
                 </div>
             </nav>

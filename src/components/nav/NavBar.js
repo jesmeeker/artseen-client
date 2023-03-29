@@ -24,8 +24,6 @@ export const NavBar = () => {
         setTokenState(localStorage.getItem('artseen_token'))
     }, [setToken])
 
-    console.log(`"token" ${token}`)
-
     const navbar = useRef();
 
     useEffect(() => {
@@ -86,7 +84,7 @@ export const NavBar = () => {
                         My Portfolio
                     </Link>
                     <span className="padding">/</span>
-                    <Link to="/add" className="navbar-item">
+                    <Link to="portfolio/add" className="navbar-item">
                         Add Piece
                     </Link>
                     <span className="padding">/</span>
@@ -147,14 +145,6 @@ export const NavBar = () => {
         }
         else {
             return <>
-                {/* <span className="padding"></span>
-                <Link to="/artists" className="navbar-item">
-                    Browse Artists
-                </Link>
-                <span className="padding">/</span>
-                <Link to="/art" className="navbar-item">
-                    Browse Art
-                </Link> */}
             </>
         }
     }
@@ -192,10 +182,6 @@ export const NavBar = () => {
                         onClick={() =>
                             (navigate("/cart"))
                         }>
-                            {/* <span class="icon is-small">
-                                <i class="has-text-warning"></i>
-                                <i class="has-text-black"><Icon path={mdiCartOutline} size={1.5} /></i>
-                            </span> */}
                         </a>
                         <button
                             className="button is-rounded"
@@ -240,7 +226,7 @@ export const NavBar = () => {
                     className="navbar-burger"
                     aria-label="menu"
                     aria-expanded="true"
-                    data-target="navbarBasicExamplef"
+                    data-target="navbarBasicExample"
                     onClick={showMobileNavbar}
                     ref={hamburger}
                 >
@@ -255,14 +241,12 @@ export const NavBar = () => {
                         menuItemsToDisplay()
                     }
                 </div>
-
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
                             {
                                 rightSideNav()
                             }
-
                         </div>
                     </div>
                 </div>

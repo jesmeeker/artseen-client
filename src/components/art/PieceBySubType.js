@@ -21,7 +21,8 @@ export const PieceBySubType = ({ selectedArtType, selectedSubType, setSelectedSu
 
     return (
         <><section className="posts__dropdown">
-            <label htmlFor="subtypes">Sub Type</label><br></br>
+            <label htmlFor="subtypes">Filter By Sub Type</label><br></br>
+            <div class="select">
             <select value={selectedSubType} onChange={(event) => { setSelectedSubType(parseInt(event.target.value)) }}>
                 <option value="0" name="subtype" className="form-control" >View All</option>
                 {filteredSubTypes.map(subtype => (
@@ -31,6 +32,7 @@ export const PieceBySubType = ({ selectedArtType, selectedSubType, setSelectedSu
                 )
                 )}
             </select>
+            </div>
             </section>
         </>
     )

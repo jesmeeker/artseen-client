@@ -12,7 +12,11 @@ export const PieceByArtType = ({ selectedArtType, setSelectedArtType }) => {
 
     return (
         <><section className="posts__dropdown">
-            <label htmlFor="arttypes">Primary Art Type</label><br></br>
+            
+
+            <label htmlFor="arttypes">Filter By Art Type</label><br></br>
+            <div class="select">
+             
             <select value={selectedArtType} onChange={(event) => { setSelectedArtType(parseInt(event.target.value)) }}>
                 <option value="0" name="arttype_id" className="form-control" >View All</option>
                 {artTypes.map(arttype => (
@@ -22,6 +26,7 @@ export const PieceByArtType = ({ selectedArtType, setSelectedArtType }) => {
                 )
                 )}
             </select>
+            </div>
             </section>
         </>
     )
