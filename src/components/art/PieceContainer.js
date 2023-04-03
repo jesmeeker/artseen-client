@@ -27,7 +27,6 @@ export const PieceContainer = () => {
     return <>
         <div className="container">
             <nav className="level">
-
             </nav>
             <nav className="level bottom-border">
                 <div class="level-left">
@@ -43,7 +42,6 @@ export const PieceContainer = () => {
                     </div>
                 </div>
             </nav>
-
             <nav class="level">
                 <div class="level-left" style={{}}>
                     {

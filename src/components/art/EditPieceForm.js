@@ -59,7 +59,6 @@ export const EditPieceForm = ({ }) => {
                 data.surface = parseInt(data.surface?.id)
                 data.media = parseInt(data.media.id)
                 setNewPiece(data)
-
                 let copy = []
                 for (const subtype of data.subtypes) {
                     copy.push(subtype.id)
@@ -87,7 +86,6 @@ export const EditPieceForm = ({ }) => {
                                 <div className="field-body">
                                     <label className="label" width>Subtitle</label>
                                 </div>
-
                             </div>
                             <div className="field">
                                 <div className="control is-expanded">
@@ -118,7 +116,6 @@ export const EditPieceForm = ({ }) => {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="form-group">
                                 <label className="label">About the piece</label>
                                 <textarea
@@ -156,7 +153,6 @@ export const EditPieceForm = ({ }) => {
                             </div>
                             <div className="field">
                                 <label className="label mt-4">Subtype (one or more)</label>
-
                                 <div class="select is-primary">
                                     <select
                                         multiple={true}
@@ -237,7 +233,6 @@ export const EditPieceForm = ({ }) => {
                                         <div className="field-body">
                                             <label className="label" width>Width (inches)</label>
                                         </div>
-
                                     </div>
                                     <div className="field">
                                         <div className="control is-expanded">
@@ -272,7 +267,6 @@ export const EditPieceForm = ({ }) => {
                                         <div className="field-body">
                                             <label className="label" width>Weight (pounds)</label>
                                         </div>
-
                                     </div>
                                     <div className="field">
                                         <div className="control is-expanded">
@@ -287,7 +281,6 @@ export const EditPieceForm = ({ }) => {
                                                             onChange={handleNewPieceInfo} />
                                                     </p>
                                                 </div>
-
                                                 <div className="field">
                                                     <p className="control is-expanded">
                                                         <input
@@ -305,7 +298,6 @@ export const EditPieceForm = ({ }) => {
                                         <div className="field-body">
                                             <label className="label">Image URL</label>
                                         </div>
-
                                     </div>
                                     <div className="field">
                                         <div className="control is-expanded">
@@ -324,7 +316,6 @@ export const EditPieceForm = ({ }) => {
                                             </div>
                                         </div>
                                     </div>
-
                                     <br></br>
                                     <label className="title mt-6">Details about your art piece</label>
                                     <div className="field">
@@ -409,7 +400,6 @@ export const EditPieceForm = ({ }) => {
                                         <div className="field-body">
                                             <label className="label" width>Price</label>
                                         </div>
-
                                     </div>
                                     <div className="field">
                                         <div className="control is-expanded">
@@ -445,14 +435,19 @@ export const EditPieceForm = ({ }) => {
                                             </div>
                                         </div>
                                     </div>
-
                                     <button type="publish"
                                         onClick={(e) => {
                                             e.preventDefault()
-
-                                            let copy = { ...piece }
-                                            copy.subtypes = selectedSubTypes
-                                            updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
+                                            if (
+                                                window.confirm(
+                                                    "Are you sure? This action is permanent."
+                                                )
+                                            ) {
+                                                let copy = { ...piece }
+                                                copy.subtypes = selectedSubTypes
+                                                updatePiece(copy.id, copy).then(() => navigate("/portfolio"))
+                                            }
+                                            else { }
                                         }
                                         }
                                         className="button is-rounded is-link is-small" style={{ margin: "1rem" }}
@@ -465,7 +460,7 @@ export const EditPieceForm = ({ }) => {
                                         }}
                                         className="button is-rounded is-danger is-light is-small" style={{ margin: "1rem" }}
                                     >Cancel
-                                     </button>
+                                    </button>
                                 </fieldset>
                             </div>
                         </fieldset>
@@ -474,4 +469,4 @@ export const EditPieceForm = ({ }) => {
             </div>
         </section>
     );
-                                    };
+};

@@ -56,27 +56,10 @@ export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState, s
                         <img src={art_piece.image_url} alt={art_piece.image_url} />
                     </div>
                     <nav class="level">
-                        <div class="level-left" style={{}}>
+                        <div class="level-left">
                             <LikeButton art_piece={art_piece} setArt={setArt} setArtistsArt={setArtistsArt} setFilteredArt={setFilteredArt} artistId={artistId} />
                         </div>
-                        <div class="level-right" style={{}}>
-                            {/* {
-                                art_piece.creator ? (
-                                    <>                    
-                                    <div class="level-item">
-                                        <button className="button is-rounded is-link is-small" onClick={() => navigate(`${art_piece.id}/edit`)}>
-                                            Edit
-                                        </button>
-                                    </div>
-                                        <div class="level-item">
-
-                                            <button className="button is-rounded is-danger is-light is-small" onClick={() => deleteWindow(art_piece.id)}>
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </>
-                                ) : ("")
-                            } */}
+                        <div class="level-right">
                         </div>
                     </nav>
                     <div>{art_piece.artist?.full_name}</div>
@@ -84,10 +67,10 @@ export const Art = ({ art_piece, setArt, state, setFilteredArt, favoriteState, s
                     <div>{art_piece.length}'x{art_piece.width}'x{art_piece.height}'</div>
                     <div>${art_piece.price}</div>
                     <nav class="level mt-4">
-                        <div class="level-left" style={{}}>
+                        <div class="level-left">
                         <AddToCartButton art_piece={art_piece} permissions={permissions} setArt={setArt} setArtistsArt={setArtistsArt} setFilteredArt={setFilteredArt} setFavorites={setFavorites} artistId={artistId} favoriteState={favoriteState} />
                         </div>
-                        <div class="level-right" style={{}}>
+                        <div class="level-right">
                             {
                                 art_piece.creator ? (
                                     <>                    
