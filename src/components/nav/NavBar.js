@@ -24,8 +24,6 @@ export const NavBar = () => {
         setTokenState(localStorage.getItem('artseen_token'))
     }, [setToken])
 
-    console.log(`"token" ${token}`)
-
     const navbar = useRef();
 
     useEffect(() => {
@@ -86,7 +84,7 @@ export const NavBar = () => {
                         My Portfolio
                     </Link>
                     <span className="padding">/</span>
-                    <Link to="/add" className="navbar-item">
+                    <Link to="portfolio/add" className="navbar-item">
                         Add Piece
                     </Link>
                     <span className="padding">/</span>
@@ -147,14 +145,6 @@ export const NavBar = () => {
         }
         else {
             return <>
-                {/* <span className="padding"></span>
-                <Link to="/artists" className="navbar-item">
-                    Browse Artists
-                </Link>
-                <span className="padding">/</span>
-                <Link to="/art" className="navbar-item">
-                    Browse Art
-                </Link> */}
             </>
         }
     }
@@ -163,14 +153,14 @@ export const NavBar = () => {
         if (token) {
             if (permissions === "viewer") {
                 return <>
-                    <p class="level">
-                        <a a class="button is-rounded is-small" style={{ border: "none", background: "none" }}
+                    <p className="level">
+                        <a a className="button is-rounded is-small" style={{ border: "none", background: "none" }}
                         onClick={() =>
                             (navigate("/cart"))
                         }>
-                            <span class="icon is-small">
-                                <i class="has-text-warning"></i>
-                                <i class="has-text-black"><Icon path={mdiCartOutline} size={1.5} /></i>
+                            <span className="icon is-small">
+                                <i className="has-text-warning"></i>
+                                <i className="has-text-black"><Icon path={mdiCartOutline} size={1.5} /></i>
                             </span>
                         </a>
                         <button
@@ -187,15 +177,11 @@ export const NavBar = () => {
                 </>
             } else {
                 return <>
-                     <p class="level">
-                     <a a class="button is-rounded is-small" style={{ border: "none", background: "none" }}
+                     <p className="level">
+                     <a a className="button is-rounded is-small" style={{ border: "none", background: "none" }}
                         onClick={() =>
                             (navigate("/cart"))
                         }>
-                            {/* <span class="icon is-small">
-                                <i class="has-text-warning"></i>
-                                <i class="has-text-black"><Icon path={mdiCartOutline} size={1.5} /></i>
-                            </span> */}
                         </a>
                         <button
                             className="button is-rounded"
@@ -212,7 +198,7 @@ export const NavBar = () => {
         }
         else {
             return <>
-            <p class="level">
+            <p className="level">
                 <button className="js-modal-trigger button is-rounded is-link" data-target="modal-js-example">
                     Register
                 </button>
@@ -233,14 +219,14 @@ export const NavBar = () => {
         >
             <div className="navbar-brand">
                 <a className="navbar-item" href="/home">
-                    <h1 class="title is-3" className="rareHeader">ArtSeen</h1>
+                    <h1 className="title is-3">ArtSeen</h1>
                 </a>
                 <a
                     role="button"
                     className="navbar-burger"
                     aria-label="menu"
                     aria-expanded="true"
-                    data-target="navbarBasicExamplef"
+                    data-target="navbarBasicExample"
                     onClick={showMobileNavbar}
                     ref={hamburger}
                 >
@@ -255,22 +241,20 @@ export const NavBar = () => {
                         menuItemsToDisplay()
                     }
                 </div>
-
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
                             {
                                 rightSideNav()
                             }
-
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="modal-js-example" class="modal">
-                <div class="modal-background"></div>
+            <div id="modal-js-example" className="modal">
+                <div className="modal-background"></div>
                 <Register registerState={registerState} />
-                <button class="modal-close is-large" aria-label="close"></button>
+                <button className="modal-close is-large" aria-label="close"></button>
             </div>
         </nav>
     </>

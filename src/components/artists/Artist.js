@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom"
 import { FollowButton } from "./FollowButton"
+import "./artist.css"
 
 export const Artist = ({ artist, setArtists, setFilteredArtists, setFollowedArtists, following }) => {
     return (
         <>
             <div class="tile is-parent is-4">
-                <article className="tile is-child">
+                <article className="tile is-child box">
                     <Link to={`/artists/${artist.id}`}>
-                        <img className="art__image" src={artist.image_url} alt={artist.image_url} />
+                        <img className="artist__image" src={artist.image_url} alt={artist.image_url} />
                     </Link>
                     <nav className="level">
                 <div class="level-left">

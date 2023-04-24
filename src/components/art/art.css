@@ -20,15 +20,16 @@
 }
 
 .art__image {
+  position: relative;
   width: fit-content;
-  object-fit: cover;
-  border-radius: 2%;
+  height: 400px;
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(244, 244, 244));
+  overflow: hidden;
   padding: .15rem
 }
 
 .art__piececard {
   background-color: white;
-  border: 1px dotted black;
 }
 
 .art__container {
@@ -42,4 +43,12 @@
 
 .block:not(:last-child) {
   margin-bottom: 1.5rem;
+}
+
+.piece_subtitle {
+  width: 350px;
+  /* padding: 20px; */
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

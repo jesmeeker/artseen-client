@@ -20,17 +20,29 @@ export const Portfolio = ({ token }) => {
 
     return (
         <>
-            <div className="art__container">
-                <h1 className="title is-1">my portfolio</h1>
-                <button className="button is-rounded" onClick={() => navigate("add")}>
-                    +Add Piece
-                </button>
-            
-            </div>
-            <div className="art__container">
-                {art.map((art_piece) => (
-                    <Art key={art_piece.id} art_piece={art_piece} token={token} state={"Portfolio"} setArt={setArt}/>
-                ))}
+            <div className="container">
+                <nav className="level">
+
+                </nav>
+                <nav className="level bottom-border">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <p className="title is-1">my portfolio</p>
+                        </div>
+                    </div>
+                    <div class="level-right" style={{}}>
+                        <div class="level-item">
+                            <button className="button is-rounded" onClick={() => navigate("add")}>
+                                +Add Piece
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <div className="art__container">
+                    {art.map((art_piece) => (
+                        <Art key={art_piece.id} art_piece={art_piece} token={token} state={"Portfolio"} setArt={setArt} />
+                    ))}
+                </div>
             </div>
         </>
     )
